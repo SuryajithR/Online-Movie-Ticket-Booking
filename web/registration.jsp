@@ -65,11 +65,11 @@
 						</form>
 					</div>
 					<div class="signup-image">
-						<figure>
+<!--						<figure>
 							<img src="images/signup-image.jpg" alt="sing up image">
-						</figure>
-						<a href="login.jsp" class="signup-image-link">I am already
-							member</a>
+                                                </figure><br>-->
+						<a href="login.jsp" class="signup-image-link">I have an
+							account</a>
 					</div>
 				</div>
 			</div>

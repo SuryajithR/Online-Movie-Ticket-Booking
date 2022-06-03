@@ -201,7 +201,7 @@ body {
   font-family: Poppins; }
 
 .container {
-  width: 900px;
+  width: 500px;
   background: #fff;
   margin: 0 auto;
   box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
@@ -507,8 +507,8 @@ label.valid {
   background: #e72734; }
 
 .signin-form {
-  margin-right: 90px;
-  margin-left: 80px; }
+  margin-right: 0px;
+  margin-left: 0px; }
 
 .signin-image {
   margin-left: 110px;
@@ -522,7 +522,7 @@ label.valid {
 @media screen and (min-width: 1024px) {
   .container {
     max-width: 1200px; } }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1568px) {
   .signup-content, .signin-content {
     flex-direction: column;
     -moz-flex-direction: column;
@@ -540,12 +540,12 @@ label.valid {
     margin-right: 0px;
     padding-left: 0px;
     /* box-sizing: border-box; */
-    padding: 0 30px; }
+    padding: 0 60px; }
 
   .signin-image {
     margin-left: 0px;
     margin-right: 0px;
-    margin-top: 50px;
+    margin-top: 20px;
     order: 2;
     -moz-order: 2;
     -webkit-order: 2;
@@ -573,7 +573,7 @@ label.valid {
     -ms-order: 1;
     margin-right: 0px;
     margin-left: 0px;
-    padding: 0 30px; }
+    padding: 0 60px; }
 
   .form-title {
     text-align: center; } }
