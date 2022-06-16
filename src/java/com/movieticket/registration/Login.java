@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author surya
  */
-@WebServlet(name = "Login", urlPatterns = {"/login"})
+@WebServlet(name = "Login", urlPatterns = {"/signin"})
 public class Login extends HttpServlet {
 
     @Override
@@ -32,17 +32,23 @@ public class Login extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
-            PreparedStatement pst = con.prepareStatement("select * from users where uemail = ? and upwd= ?");
+            PreparedStatement pst = con.prepareStatement("select * from users where uemail = ? and upwd= ? ");
             pst.setString(1, uemail);
             pst.setString(2, upwd);
             
             ResultSet rs = pst.executeQuery();
             if(rs.next()){
                 session.setAttribute("name", rs.getString("uname"));
-                dispatcher = request.getRequestDispatcher("index.jsp");
+                String usertype=rs.getString("utype");
+                if("user".equals(usertype)){
+                    dispatcher = request.getRequestDispatcher("home.jsp");
+                }
+                else{
+                    dispatcher = request.getRequestDispatcher("adminhome.jsp");
+                }
             }else{
                 request.setAttribute("status", "failed");
-                dispatcher = request.getRequestDispatcher("login.jsp");
+                dispatcher = request.getRequestDispatcher("signin.jsp");
             }
             dispatcher.forward(request, response);
 

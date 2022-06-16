@@ -1,11 +1,3 @@
-<%--<%
-    if(session.getAttribute("name")==null){
-    response.sendRedirect("index.jsp");
-    }
-%>--%>
-
-<%--<%=session.getAttribute("name")%>--%>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +7,7 @@
 
 	<!-- Font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet">
-
+	 
 	<!-- CSS -->
 	<link rel="stylesheet" href="css/bootstrap-reboot.min.css">
 	<link rel="stylesheet" href="css/bootstrap-grid.min.css">
@@ -96,9 +88,10 @@
 
 									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMore">
 										<li><a href="about.html">About</a></li>
-										<li><a href="signin.jsp">Sign In</a></li>
-										<li><a href="signup.jsp">Sign Up</a></li>
-										<li><a href="404.html">404 Page</a></li>
+<!--										<li><a href="signin.html">Sign In</a></li>
+										<li><a href="signup.html">Sign Up</a></li>-->
+<!--										<li><a href="logout.jsp">Logout</a></li>-->
+										<li><a href="signin.jsp">Logout</a></li>
 									</ul>
 								</li>
 								<!-- end dropdown -->
@@ -111,9 +104,9 @@
 									<i class="icon ion-ios-search"></i>
 								</button>
 
-								<a href="signin.jsp" class="header__sign-in">
+								<a href="signin.html" class="header__sign-in">
 									<i class="icon ion-ios-log-in"></i>
-									<span>sign in</span>
+									<span><%=session.getAttribute("name")%></span>
 								</a>
 							</div>
 							<!-- end header auth -->
@@ -150,16 +143,7 @@
 	<!-- end header -->
 
 	<!-- home -->
-	<section class="home">
-		<!-- home bg -->
-		<div class="owl-carousel home__bg">
-			<div class="item home__cover" data-bg="img/home/home__bg.jpg"></div>
-			<div class="item home__cover" data-bg="img/home/home__bg2.jpg"></div>
-			<div class="item home__cover" data-bg="img/home/home__bg3.jpg"></div>
-			<div class="item home__cover" data-bg="img/home/home__bg4.jpg"></div>
-		</div>
-		<!-- end home bg -->
-
+	<section class="home home--bg">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
