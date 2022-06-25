@@ -4,8 +4,12 @@
     }
 %>--%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
 <%--<%=session.getAttribute("name")%>--%>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +42,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="Dmitry Volkov">
-	<title>FlixGo – Online Movies, TV Shows & Cinema HTML Template</title>
+	<title>Online Movie Ticket Booking</title>
 
 </head>
 <body class="body">
@@ -95,7 +99,7 @@
 									<a class="dropdown-toggle header__nav-link header__nav-link--more" href="#" role="button" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon ion-ios-more"></i></a>
 
 									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMore">
-										<li><a href="about.html">About</a></li>
+										<li><a href="test.jsp">About</a></li>
 										<li><a href="signin.jsp">Sign In</a></li>
 										<li><a href="signup.jsp">Sign Up</a></li>
 										<li><a href="404.html">404 Page</a></li>
@@ -150,6 +154,7 @@
 	<!-- end header -->
 
 	<!-- home -->
+        <form method="post" action="signin">
 	<section class="home">
 		<!-- home bg -->
 		<div class="owl-carousel home__bg">
@@ -163,7 +168,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<h1 class="home__title"><b>NEW ITEMS</b> OF THIS SEASON</h1>
+					<h1 class="home__title"><b>NEW MOVIES</b> OF THIS SEASON</h1>
 
 					<button class="home__nav home__nav--prev" type="button">
 						<i class="icon ion-ios-arrow-round-back"></i>
@@ -172,96 +177,54 @@
 						<i class="icon ion-ios-arrow-round-forward"></i>
 					</button>
 				</div>
-
 				<div class="col-12">
 					<div class="owl-carousel home__carousel">
+                                        <%
+                                            try {
+                                                Class.forName("com.mysql.jdbc.Driver");
+                                                Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+                                                Statement st = con.createStatement();
+                                                String sql = "SELECT * FROM now_running";
+                                                ResultSet rs = st.executeQuery(sql);
+                                                while (rs.next()) {
+                                                    String firstname = rs.getString("movie_name");
+//                                                  String lastname = rs.getString("movie_desc");
+                                                    String genre = rs.getString("genre");
+                                                    String filename = rs.getString("file_name");
+                                        %>
 						<div class="item">
 							<!-- card -->
 							<div class="card card--big">
 								<div class="card__cover">
-									<img src="img/covers/cover.jpg" alt="">
+									<!--<img src="img/covers/cover.jpg" alt="">-->
+                                                                        <image src="<%=filename%>" width="150" height="360"/>
 									<a href="#" class="card__play">
 										<i class="icon ion-ios-play"></i>
 									</a>
 								</div>
 								<div class="card__content">
-									<h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
+									<h3 class="card__title"><a href="#"><%=firstname%></a></h3>
 									<span class="card__category">
-										<a href="#">Action</a>
-										<a href="#">Triler</a>
+										<a href="#"><%=genre%></a>
 									</span>
 									<span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
 								</div>
 							</div>
 							<!-- end card -->
 						</div>
-
-						<div class="item">
-							<!-- card -->
-							<div class="card card--big">
-								<div class="card__cover">
-									<img src="img/covers/cover2.jpg" alt="">
-									<a href="#" class="card__play">
-										<i class="icon ion-ios-play"></i>
-									</a>
-								</div>
-								<div class="card__content">
-									<h3 class="card__title"><a href="#">Benched</a></h3>
-									<span class="card__category">
-										<a href="#">Comedy</a>
-									</span>
-									<span class="card__rate"><i class="icon ion-ios-star"></i>7.1</span>
-								</div>
-							</div>
-							<!-- end card -->
-						</div>
-
-						<div class="item">
-							<!-- card -->
-							<div class="card card--big">
-								<div class="card__cover">
-									<img src="img/covers/cover3.jpg" alt="">
-									<a href="#" class="card__play">
-										<i class="icon ion-ios-play"></i>
-									</a>
-								</div>
-								<div class="card__content">
-									<h3 class="card__title"><a href="#">Whitney</a></h3>
-									<span class="card__category">
-										<a href="#">Romance</a>
-										<a href="#">Drama</a>
-									</span>
-									<span class="card__rate"><i class="icon ion-ios-star"></i>6.3</span>
-								</div>
-							</div>
-							<!-- end card -->
-						</div>
-
-						<div class="item">
-							<!-- card -->
-							<div class="card card--big">
-								<div class="card__cover">
-									<img src="img/covers/cover4.jpg" alt="">
-									<a href="#" class="card__play">
-										<i class="icon ion-ios-play"></i>
-									</a>
-								</div>
-								<div class="card__content">
-									<h3 class="card__title"><a href="#">Blindspotting</a></h3>
-									<span class="card__category">
-										<a href="#">Comedy</a>
-										<a href="#">Drama</a>
-									</span>
-									<span class="card__rate"><i class="icon ion-ios-star"></i>7.9</span>
-								</div>
-							</div>
-							<!-- end card -->
-						</div>
+                                                                        
+        <%
+                }
+            } catch (Exception e) {
+                out.println(e);
+            }
+        %>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+        </form>
 	<!-- end home -->
 
 	<!-- content -->
