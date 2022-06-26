@@ -8,7 +8,12 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
-<%--<%=session.getAttribute("name")%>--%>
+
+<%@page import="java.util.Set"%>
+<%@page import="java.util.HashSet"%>
+<%@page import="java.util.Random"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +27,15 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 body {
 	color: #566787;
@@ -197,7 +211,7 @@ table.table .avatar {
 	height: 11px;
 	border: solid #000;
 	border-width: 0 3px 3px 0;
-	transform: inherit;
+	/*transform: inherit;*/
 	z-index: 3;
 	transform: rotateZ(45deg);
 }
@@ -317,15 +331,6 @@ $(document).ready(function(){
 							</a>
 							<!-- end header logo -->
 
-							<!-- header nav -->
-							<ul class="header__nav">
-								<li class="header__nav-item">
-									
-								</li>
-								<!-- end dropdown -->
-							</ul>
-							<!-- end header nav -->
-
 							<!-- header auth -->
 							<div class="header__auth">
 								<a class="header__nav-link" href="index.jsp" role="button">Sign Out</a>
@@ -336,22 +341,15 @@ $(document).ready(function(){
 								</a>
 							</div>
 							<!-- end header auth -->
-
-							<!-- header menu btn -->
-							<button class="header__btn" type="button">
-								<span></span>
-								<span></span>
-								<span></span>
-							</button>
-							<!-- end header menu btn -->
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+        </header>
     
     
-    
+        <br><br><br><br><br>
     
 <div class="container-xl">
 	<div class="table-responsive">
@@ -380,9 +378,11 @@ $(document).ready(function(){
 						<th>Id</th>
 						<th>Name</th>
 						<th>Description</th>
-						<th>Genre</th>
+                                                <th>Genre</th>
+                                                <th>Release Date</th>
+                                                <th>End Date</th>
+                                                <th>Show Time</th>
 						<th>Image</th>
-                                                <th>Path</th>
 					</tr>
 				</thead>
                                 <%
@@ -390,7 +390,7 @@ $(document).ready(function(){
                                         Class.forName("com.mysql.jdbc.Driver");
                                         Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
                                         Statement st = con.createStatement();
-                                        String sql = "SELECT * FROM now_running";
+                                        String sql = "SELECT * FROM movie_details";
                                         ResultSet rs = st.executeQuery(sql);
                                         while (rs.next()) {
                                             String id = rs.getString("movie_id");    
@@ -398,7 +398,10 @@ $(document).ready(function(){
                                             String desc = rs.getString("movie_desc");
                                             String genre = rs.getString("genre");
                                             String filename = rs.getString("file_name");
-                                            String path = rs.getString("path");
+                                            String rdate = rs.getString("release_date");
+                                            String edate = rs.getString("end_date");
+                                            String stime = rs.getString("show_time");
+//                                          String path = rs.getString("path");
                                         %>
 				<tbody>
 					<tr>
@@ -412,8 +415,10 @@ $(document).ready(function(){
 						<td><%=moviename%></td>
 						<td><%=desc%></td>
 						<td><%=genre%></td>
+                                                <td><%=rdate%></td>
+                                                <td><%=edate%></td>
+                                                <td><%=stime%></td>
                                                 <td><image src="<%=filename%>" width="150" height="100"/></td>
-                                                <td><%=path%></td>
 						<td>
 							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
@@ -445,6 +450,7 @@ $(document).ready(function(){
 </div>
 <!-- Edit Modal HTML -->
 <div id="addEmployeeModal" class="modal fade">
+    <form action="FileUpload" method="post" enctype="multipart/form-data">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
@@ -452,31 +458,48 @@ $(document).ready(function(){
 					<h4 class="modal-title">Add Employee</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">					
+				<div class="modal-body">
+                                        <div class="form-group">
+						<label>Id</label>
+						<input type="number" name="movie_id" class="form-control" required>
+					</div>
 					<div class="form-group">
 						<label>Name</label>
-						<input type="text" class="form-control" required>
+						<input type="text" name="moviename" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Email</label>
-						<input type="email" class="form-control" required>
+						<label>Description</label>
+						<input type="text" name="moviedesc" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Address</label>
-						<textarea class="form-control" required></textarea>
+						<label>Genre</label>
+						<input type="text" name="genre" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Phone</label>
-						<input type="text" class="form-control" required>
-					</div>					
+						<label>Image Link</label>
+						<input type="file" name="file" required>
+					</div>
+                                        <div class="form-group">
+						<label>Release Date</label>
+						<input type="text" name="rdate" class="form-control" required>
+					</div>
+                                        <div class="form-group">
+						<label>End date</label>
+						<input type="text" name="edate" class="form-control" required>
+					</div>
+                                        <div class="form-group">
+						<label>Show Time</label>
+						<input type="text" name="stime" class="form-control" required>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-success" value="Add">
+					<input type="submit" class="btn btn-success" value="submit">
 				</div>
 			</form>
 		</div>
 	</div>
+        </form>
 </div>
 <!-- Edit Modal HTML -->
 <div id="editEmployeeModal" class="modal fade">
