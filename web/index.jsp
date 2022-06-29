@@ -95,7 +95,7 @@
 								</li>
 
 								<!-- dropdown -->
-								<li class="dropdown header__nav-item">
+<!--								<li class="dropdown header__nav-item">
 									<a class="dropdown-toggle header__nav-link header__nav-link--more" href="#" role="button" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon ion-ios-more"></i></a>
 
 									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMore">
@@ -104,7 +104,7 @@
 										<li><a href="signup.jsp">Sign Up</a></li>
 										<li><a href="404.html">404 Page</a></li>
 									</ul>
-								</li>
+								</li>-->
 								<!-- end dropdown -->
 							</ul>
 							<!-- end header nav -->
@@ -227,17 +227,17 @@
         </form>
 	<!-- end home -->
 
-	<!-- content -->
+<!--	 content 
 	<section class="content">
 		<div class="content__head">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
-						<!-- content title -->
+						 content title 
 						<h2 class="content__title">New items</h2>
-						<!-- end content title -->
+						 end content title 
 
-						<!-- content tabs nav -->
+						 content tabs nav 
 						<ul class="nav nav-tabs content__tabs" id="content__tabs" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">NEW RELEASES</a>
@@ -255,9 +255,9 @@
 								<a class="nav-link" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">CARTOONS</a>
 							</li>
 						</ul>
-						<!-- end content tabs nav -->
+						 end content tabs nav 
 
-						<!-- content mobile tabs nav -->
+						 content mobile tabs nav 
 						<div class="content__mobile-tabs" id="content__mobile-tabs">
 							<div class="content__mobile-tabs-btn dropdown-toggle" role="navigation" id="mobile-tabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<input type="button" value="New items">
@@ -276,18 +276,18 @@
 								</ul>
 							</div>
 						</div>
-						<!-- end content mobile tabs nav -->
+						 end content mobile tabs nav 
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="container">
-			<!-- content tabs -->
+			 content tabs 
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
 					<div class="row">
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-12 col-lg-6">
 							<div class="card card--list">
 								<div class="row">
@@ -325,9 +325,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-12 col-lg-6">
 							<div class="card card--list">
 								<div class="row">
@@ -364,9 +364,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-12 col-lg-6">
 							<div class="card card--list">
 								<div class="row">
@@ -405,9 +405,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-12 col-lg-6">
 							<div class="card card--list">
 								<div class="row">
@@ -445,9 +445,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-12 col-lg-6">
 							<div class="card card--list">
 								<div class="row">
@@ -485,9 +485,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-12 col-lg-6">
 							<div class="card card--list">
 								<div class="row">
@@ -524,13 +524,13 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 					</div>
 				</div>
 
 				<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="2-tab">
 					<div class="row">
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -549,9 +549,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -569,9 +569,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -591,9 +591,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -612,9 +612,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -633,9 +633,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -653,9 +653,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -675,9 +675,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -696,9 +696,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -717,9 +717,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -737,9 +737,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -759,9 +759,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -780,13 +780,13 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 					</div>
 				</div>
 
 				<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="3-tab">
 					<div class="row">
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -805,9 +805,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -825,9 +825,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -847,9 +847,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -868,9 +868,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -889,9 +889,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -909,9 +909,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -931,9 +931,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -952,9 +952,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -973,9 +973,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -993,9 +993,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -1015,9 +1015,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -1036,13 +1036,13 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 					</div>
 				</div>
 
 				<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="4-tab">
 					<div class="row">
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -1061,9 +1061,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -1081,9 +1081,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -1103,9 +1103,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -1124,9 +1124,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -1145,9 +1145,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -1165,9 +1165,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -1187,9 +1187,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -1208,9 +1208,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -1229,9 +1229,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -1249,9 +1249,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -1271,9 +1271,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 
-						<!-- card -->
+						 card 
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="card">
 								<div class="card__cover">
@@ -1292,26 +1292,26 @@
 								</div>
 							</div>
 						</div>
-						<!-- end card -->
+						 end card 
 					</div>
 				</div>
 			</div>
-			<!-- end content tabs -->
+			 end content tabs 
 		</div>
 	</section>
-	<!-- end content -->
+	 end content 
 
-	<!-- expected premiere -->
+	 expected premiere 
 	<section class="section section--bg" data-bg="img/section/section.jpg">
 		<div class="container">
 			<div class="row">
-				<!-- section title -->
+				 section title 
 				<div class="col-12">
 					<h2 class="section__title">Expected premiere</h2>
 				</div>
-				<!-- end section title -->
+				 end section title 
 
-				<!-- card -->
+				 card 
 				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 					<div class="card">
 						<div class="card__cover">
@@ -1330,9 +1330,9 @@
 						</div>
 					</div>
 				</div>
-				<!-- end card -->
+				 end card 
 
-				<!-- card -->
+				 card 
 				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 					<div class="card">
 						<div class="card__cover">
@@ -1350,9 +1350,9 @@
 						</div>
 					</div>
 				</div>
-				<!-- end card -->
+				 end card 
 
-				<!-- card -->
+				 card 
 				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 					<div class="card">
 						<div class="card__cover">
@@ -1372,9 +1372,9 @@
 						</div>
 					</div>
 				</div>
-				<!-- end card -->
+				 end card 
 
-				<!-- card -->
+				 card 
 				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 					<div class="card">
 						<div class="card__cover">
@@ -1393,9 +1393,9 @@
 						</div>
 					</div>
 				</div>
-				<!-- end card -->
+				 end card 
 
-				<!-- card -->
+				 card 
 				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 					<div class="card">
 						<div class="card__cover">
@@ -1414,9 +1414,9 @@
 						</div>
 					</div>
 				</div>
-				<!-- end card -->
+				 end card 
 
-				<!-- card -->
+				 card 
 				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 					<div class="card">
 						<div class="card__cover">
@@ -1434,84 +1434,84 @@
 						</div>
 					</div>
 				</div>
-				<!-- end card -->
+				 end card 
 
-				<!-- section btn -->
+				 section btn 
 				<div class="col-12">
 					<a href="#" class="section__btn">Show more</a>
 				</div>
-				<!-- end section btn -->
+				 end section btn 
 			</div>
 		</div>
 	</section>
-	<!-- end expected premiere -->
+	 end expected premiere 
 
-	<!-- partners -->
+	 partners 
 	<section class="section">
 		<div class="container">
 			<div class="row">
-				<!-- section title -->
+				 section title 
 				<div class="col-12">
 					<h2 class="section__title section__title--no-margin">Our Partners</h2>
 				</div>
-				<!-- end section title -->
+				 end section title 
 
-				<!-- section text -->
+				 section text 
 				<div class="col-12">
 					<p class="section__text section__text--last-with-margin">It is a long <b>established</b> fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using.</p>
 				</div>
-				<!-- end section text -->
+				 end section text 
 
-				<!-- partner -->
+				 partner 
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 					<a href="#" class="partner">
 						<img src="img/partners/themeforest-light-background.png" alt="" class="partner__img">
 					</a>
 				</div>
-				<!-- end partner -->
+				 end partner 
 
-				<!-- partner -->
+				 partner 
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 					<a href="#" class="partner">
 						<img src="img/partners/audiojungle-light-background.png" alt="" class="partner__img">
 					</a>
 				</div>
-				<!-- end partner -->
+				 end partner 
 
-				<!-- partner -->
+				 partner 
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 					<a href="#" class="partner">
 						<img src="img/partners/codecanyon-light-background.png" alt="" class="partner__img">
 					</a>
 				</div>
-				<!-- end partner -->
+				 end partner 
 
-				<!-- partner -->
+				 partner 
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 					<a href="#" class="partner">
 						<img src="img/partners/photodune-light-background.png" alt="" class="partner__img">
 					</a>
 				</div>
-				<!-- end partner -->
+				 end partner 
 
-				<!-- partner -->
+				 partner 
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 					<a href="#" class="partner">
 						<img src="img/partners/activeden-light-background.png" alt="" class="partner__img">
 					</a>
 				</div>
-				<!-- end partner -->
+				 end partner 
 
-				<!-- partner -->
+				 partner 
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 					<a href="#" class="partner">
 						<img src="img/partners/3docean-light-background.png" alt="" class="partner__img">
 					</a>
 				</div>
-				<!-- end partner -->
+				 end partner 
 			</div>
 		</div>
-	</section>
+	</section>-->
 	<!-- end partners -->
 
 	<!-- footer -->
@@ -1554,8 +1554,8 @@
 				<div class="col-12 col-sm-4 col-md-3">
 					<h6 class="footer__title">Contact</h6>
 					<ul class="footer__list">
-						<li><a href="tel:+18002345678">+1 (800) 234-5678</a></li>
-						<li><a href="mailto:support@moviego.com">support@flixgo.com</a></li>
+						<li><a href="#">+91 69696969</a></li>
+						<li><a href="#">https://www.yedu.tech/</a></li>
 					</ul>
 					<ul class="footer__social">
 						<li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
@@ -1569,7 +1569,7 @@
 				<!-- footer copyright -->
 				<div class="col-12">
 					<div class="footer__copyright">
-						<small><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></small>
+						<small><a target="_blank" href="https://www.yedu.tech/">Yedu K T Y</a></small>
 
 						<ul>
 							<li><a href="#">Terms of Use</a></li>
