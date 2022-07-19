@@ -335,10 +335,10 @@ $(document).ready(function(){
 							<div class="header__auth">
 								<a class="header__nav-link" href="index.jsp" role="button">Sign Out</a>
 
-								<a class="header__sign-in">
+<!--								<a class="header__sign-in">
 									<i class="icon ion-ios-log-in"></i>
 									<span><%=session.getAttribute("name")%></span>
-								</a>
+								</a>-->
 							</div>
 							<!-- end header auth -->
 						</div>
