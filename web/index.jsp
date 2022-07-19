@@ -178,7 +178,7 @@
 					</button>
 				</div>
 				<div class="col-12">
-					<div class="">
+					<div class="owl-carousel home__carousel">
                                         <%
                                             try {
                                                 Class.forName("com.mysql.jdbc.Driver");
