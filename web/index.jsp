@@ -42,7 +42,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="Dmitry Volkov">
-	<title>Online Movie Ticket Booking</title>
+	<title>PVR Cinemas</title>
 
 </head>
 <body class="body">
@@ -280,12 +280,12 @@
 				<!-- footer copyright -->
 				<div class="col-12">
 					<div class="footer__copyright">
-						<small><a target="_blank" href="https://www.yedu.tech/">Yedu K T Y</a></small>
+						<!--<small><a target="_blank" href="https://www.yedu.tech/">Yedu K T Y</a></small>-->
 
-						<ul>
+<!--						<ul>
 							<li><a href="#">Terms of Use</a></li>
 							<li><a href="#">Privacy Policy</a></li>
-						</ul>
+						</ul>-->
 					</div>
 				</div>
 				<!-- end footer copyright -->

@@ -36,7 +36,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="Dmitry Volkov">
-	<title>Online Movie Ticket Booking</title>
+	<title>PVR Cinemas</title>
 
 </head>
 <body class="body">
@@ -86,13 +86,7 @@
 
 -->								
 								<!-- dropdown -->
-								<li class="dropdown header__nav-item">
-									<a class="dropdown-toggle header__nav-link header__nav-link--more" href="#" role="button" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon ion-ios-more"></i></a>
 
-									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMore">
-										<li><a href="index.jsp">Logout</a></li>
-									</ul>
-								</li>
 								<!-- end dropdown -->
 							</ul>
 							<!-- end header nav -->
@@ -101,12 +95,18 @@
 							<div class="header__auth">
 								<button class="header__search-btn" type="button">
 									<i class="icon ion-ios-search"></i>
-								</button>
+                                                                </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                                                                </button>&nbsp;&nbsp;&nbsp;
+
+                                                        <div class="header__auth">
+								<a class="header__nav-link" href="index.jsp" role="button">Sign Out</a>
+
+							</div>
 
 								<a class="header__sign-in">
 									<i class="icon ion-ios-log-in"></i>
 									<span><%=session.getAttribute("name")%></span>
 								</a>
+                                                              
 							</div>
 							<!-- end header auth -->
 
@@ -261,12 +261,12 @@
 				<!-- footer copyright -->
 				<div class="col-12">
 					<div class="footer__copyright">
-						<small><a target="_blank" href="https://www.yedu.tech/">Yedu K T Y</a></small>
+<!--						<small><a target="_blank" href="https://www.yedu.tech/">Yedu K T Y</a></small>
 
 						<ul>
 							<li><a href="#">Terms of Use</a></li>
 							<li><a href="#">Privacy Policy</a></li>
-						</ul>
+						</ul>-->
 					</div>
 				</div>
 				<!-- end footer copyright -->
