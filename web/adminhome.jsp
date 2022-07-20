@@ -335,10 +335,10 @@ $(document).ready(function(){
 							<div class="header__auth">
 								<a class="header__nav-link" href="index.jsp" role="button">Sign Out</a>
 
-								<a class="header__sign-in">
+<!--								<a class="header__sign-in">
 									<i class="icon ion-ios-log-in"></i>
 									<span><%=session.getAttribute("name")%></span>
-								</a>
+								</a>-->
 							</div>
 							<!-- end header auth -->
 						</div>
@@ -350,7 +350,9 @@ $(document).ready(function(){
     
     
         <br><br><br><br><br>
-    
+        
+        
+<!--Movie Details table-->    
 <div class="container-xl">
 	<div class="table-responsive">
 		<div class="table-wrapper">
@@ -420,7 +422,97 @@ $(document).ready(function(){
                                                 <td><%=stime%></td>
                                                 <td><image src="<%=filename%>" width="150" height="100"/></td>
 						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a href="EditMovie.jsp?id=<%=id%>" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a href="deleteMovie.jsp?id=<%=id%>" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+						</td>
+					</tr>
+                                                <%
+                }
+            } catch (Exception e) {
+                out.println(e);
+            }
+        %>
+				</tbody>
+			</table>
+
+			<div class="clearfix">
+				<!--<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>-->
+<!--				<ul class="pagination">
+					<li class="page-item disabled"><a href="#">Previous</a></li>
+					<li class="page-item"><a href="#" class="page-link">1</a></li>
+					<li class="page-item"><a href="#" class="page-link">2</a></li>
+					<li class="page-item active"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">4</a></li>
+					<li class="page-item"><a href="#" class="page-link">5</a></li>
+					<li class="page-item"><a href="#" class="page-link">Next</a></li>
+				</ul>-->
+			</div>
+		</div>
+	</div>        
+</div>
+                                
+<!--NOW RUNNING TABLE-->
+<div class="container-xl">
+	<div class="table-responsive">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-6">
+						<h2>Currently <b>Running</b></h2>
+					</div>
+					<div class="col-sm-6">
+<!--						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Movie</span></a>
+						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						-->
+					</div>
+				</div>
+			</div>
+
+			<table class="table table-dark">
+				<thead>
+					<tr>
+						<th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+						</th>
+						<th>Id</th>
+						<th>Name</th>
+						<th>Description</th>
+                                                <th>Genre</th>
+                                                <th>Image</th>
+					</tr>
+				</thead>
+                                <%
+                                    try {
+                                        Class.forName("com.mysql.jdbc.Driver");
+                                        Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+                                        Statement st = con.createStatement();
+                                        String sql = "SELECT * FROM now_running";
+                                        ResultSet rs = st.executeQuery(sql);
+                                        while (rs.next()) {
+                                            String id = rs.getString("movie_id");    
+                                            String moviename = rs.getString("movie_name");
+                                            String desc = rs.getString("movie_desc");
+                                            String genre = rs.getString("genre");
+                                            String filename = rs.getString("file_name");
+//                                          String path = rs.getString("path");
+                                        %>
+				<tbody>
+					<tr>
+						<td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox1" name="options[]" value="1">
+								<label for="checkbox1"></label>
+							</span>
+						</td>
+						<td><%=id%></td>
+						<td><%=moviename%></td>
+						<td><%=desc%></td>
+						<td><%=genre%></td>
+                                                <td><image src="<%=filename%>" width="150" height="100"/></td>
+						<td>
+							<!--<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
 							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
@@ -434,8 +526,8 @@ $(document).ready(function(){
 			</table>
 
 			<div class="clearfix">
-				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-				<ul class="pagination">
+				<!--<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>-->
+<!--				<ul class="pagination">
 					<li class="page-item disabled"><a href="#">Previous</a></li>
 					<li class="page-item"><a href="#" class="page-link">1</a></li>
 					<li class="page-item"><a href="#" class="page-link">2</a></li>
@@ -443,11 +535,15 @@ $(document).ready(function(){
 					<li class="page-item"><a href="#" class="page-link">4</a></li>
 					<li class="page-item"><a href="#" class="page-link">5</a></li>
 					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-				</ul>
+				</ul>-->
 			</div>
 		</div>
 	</div>        
-</div>
+</div>                                
+                                
+                                
+                                
+                                
 <!-- Edit Modal HTML -->
 <div id="addEmployeeModal" class="modal fade">
     <form action="FileUpload" method="post" enctype="multipart/form-data">
@@ -455,7 +551,7 @@ $(document).ready(function(){
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">						
-					<h4 class="modal-title">Add Employee</h4>
+					<h4 class="modal-title">Add New Movie</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
@@ -481,7 +577,18 @@ $(document).ready(function(){
 					</div>
                                         <div class="form-group">
 						<label>Release Date</label>
-						<input type="text" name="rdate" class="form-control" required>
+<!--						<input type="text" name="rdate" class="form-control" required>-->
+                                                <div class='input-group date' id='datetimepicker1'>
+                                                        <input type='text' name="rdate" class="form-control" />
+                                                        <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                              <script type="text/javascript">
+                                                                 $(function () {
+                                                                     $('#datetimepicker1').datetimepicker();
+                                                                 });
+                                                              </script>
+                                                </div>
 					</div>
                                         <div class="form-group">
 						<label>End date</label>
@@ -501,32 +608,61 @@ $(document).ready(function(){
 	</div>
         </form>
 </div>
+        
 <!-- Edit Modal HTML -->
 <div id="editEmployeeModal" class="modal fade">
+    
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form action="EditMovie" method="post" enctype="multipart/form-data">
 				<div class="modal-header">						
-					<h4 class="modal-title">Edit Employee</h4>
+					<h4 class="modal-title">Edit Movie</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">					
+				<div class="modal-body">
+                                        <div class="form-group">
+						<label>Id</label>
+						<input type="number" name="movie_id" class="form-control" required>
+					</div>
 					<div class="form-group">
 						<label>Name</label>
-						<input type="text" class="form-control" required>
+						<input type="text" name="moviename" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Email</label>
-						<input type="email" class="form-control" required>
+						<label>Description</label>
+						<input type="text" name="moviedesc" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Address</label>
-						<textarea class="form-control" required></textarea>
+						<label>Genre</label>
+						<input type="text" name="genre" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Phone</label>
-						<input type="text" class="form-control" required>
-					</div>					
+						<label>Image Link</label>
+						<input type="file" name="file" required>
+					</div>
+                                        <div class="form-group">
+						<label>Release Date</label>
+<!--						<input type="text" name="rdate" class="form-control" required>-->
+                                                <div class='input-group date' id='datetimepicker1'>
+                                                        <input type='text' name="rdate" class="form-control" />
+                                                        <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                              <script type="text/javascript">
+                                                                 $(function () {
+                                                                     $('#datetimepicker1').datetimepicker();
+                                                                 });
+                                                              </script>
+                                                </div>
+					</div>
+                                        <div class="form-group">
+						<label>End date</label>
+						<input type="text" name="edate" class="form-control" required>
+					</div>
+                                        <div class="form-group">
+						<label>Show Time</label>
+						<input type="text" name="stime" class="form-control" required>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
