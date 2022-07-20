@@ -326,7 +326,7 @@ $(document).ready(function(){
 					<div class="col-12">
 						<div class="header__content">
 							<!-- header logo -->
-							<a href="index.html" class="header__logo">
+							<a href="adminhome.jsp" class="header__logo">
 								<img src="img/logo.svg" alt="">
 							</a>
 							<!-- end header logo -->
@@ -543,7 +543,7 @@ $(document).ready(function(){
                                 
                                 
                                 
-<!-- Edit Modal HTML -->
+<!-- ADD Modal HTML -->
 <div id="addEmployeeModal" class="modal fade">
     <form action="FileUpload" method="post" enctype="multipart/form-data">
 	<div class="modal-dialog">
@@ -591,7 +591,18 @@ $(document).ready(function(){
 					</div>
                                         <div class="form-group">
 						<label>End date</label>
-						<input type="text" name="edate" class="form-control" required>
+						<!--<input type="text" name="edate" class="form-control" required>-->
+                                                <div class='input-group date' id='datetimepicker1'>
+                                                        <input type='text' name="edate" class="form-control" />
+                                                        <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                              <script type="text/javascript">
+                                                                 $(function () {
+                                                                     $('#datetimepicker1').datetimepicker();
+                                                                 });
+                                                              </script>
+                                                </div>
 					</div>
                                         <div class="form-group">
 						<label>Show Time</label>

@@ -30,9 +30,7 @@ import javax.servlet.http.Part;
         maxRequestSize = 1024 * 1024 * 50)
 
 public class FileUpload extends HttpServlet {
-    /*
-     create images folder at, C:\Users\Dharmesh Mourya\Documents\NetBeansProjects\ImageProject\build\web\images
-     */
+ 
 
     public static final String UPLOAD_DIR = "images";
     public String dbFileName = "";
