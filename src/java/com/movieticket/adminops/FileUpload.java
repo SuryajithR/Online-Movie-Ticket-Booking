@@ -30,9 +30,7 @@ import javax.servlet.http.Part;
         maxRequestSize = 1024 * 1024 * 50)
 
 public class FileUpload extends HttpServlet {
-    /*
-     create images folder at, C:\Users\Dharmesh Mourya\Documents\NetBeansProjects\ImageProject\build\web\images
-     */
+ 
 
     public static final String UPLOAD_DIR = "images";
     public String dbFileName = "";
@@ -97,6 +95,16 @@ public class FileUpload extends HttpServlet {
             pst.setString(8, edate);
             pst.setString(9, stime);
             pst.executeUpdate();
+            
+            PreparedStatement ps = con.prepareStatement("insert into now_running values(?,?,?,?,?,?)");
+            ps.setInt(1, id);
+            ps.setString(2, moviename);
+            ps.setString(3, moviedesc);
+            ps.setString(4, genre);
+            ps.setString(5, dbFileName);
+            ps.setString(6, savePath);
+            ps.executeUpdate();
+            
 //            dispatcher = request.getRequestDispatcher("adminhome.jsp");
 //            dispatcher.forward(request, response);
             session.invalidate();

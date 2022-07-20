@@ -30,7 +30,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="Dmitry Volkov">
-	<title>FlixGo – Online Movies, TV Shows & Cinema HTML Template</title>
+	<title>PVR Cinemas</title>
 
 </head>
 <body class="body">
@@ -63,7 +63,7 @@
 
 							<span class="sign__text">Don't have an account? <a href="signup.jsp">Sign up!</a></span>
 
-							<span class="sign__text"><a href="#">Forgot password?</a></span>
+							<!--<span class="sign__text"><a href="#">Forgot password?</a></span>-->
 						</form>
 						<!-- end authorization form -->
 					</div>

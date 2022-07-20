@@ -376,7 +376,7 @@ $(document).ready(function(){
                                             String rdate = rs.getString("release_date");
                                             String edate = rs.getString("end_date");
                                             String stime = rs.getString("show_time");
-//                                          String path = rs.getString("path");
+                                          String path = rs.getString("path");
                                         %>
 				<div class="modal-body">
 					<div class="form-group">
@@ -391,13 +391,15 @@ $(document).ready(function(){
 						<label>Genre</label>
 						<input type="text" name="genre" value="<%=genre%>" class="form-control" required>
 					</div>
-<!--					<div class="form-group">
-						<label>Image Link</label>
+                                        <div class="form-group">
+						<label>Image</label>
 						<input type="text" value="<%=filename%>" name="file" required>
-					</div>-->
+					</div>					<div class="form-group">
+						<label>Image Link</label>
+						<input type="text" value="<%=path%>" name="file" required>
+					</div>
                                         <div class="form-group">
 						<label>Release Date</label>
-<!--						<input type="text" name="rdate" class="form-control" required>-->
                                                 <div class='input-group date' id='datetimepicker1'>
                                                         <input type='text' value="<%=rdate%>" name="rdate" class="form-control" />
                                                         <span class="input-group-addon">
@@ -428,6 +430,7 @@ $(document).ready(function(){
 	</div>
                                                         <%
                 }
+con.close();
             } catch (Exception e) {
                 out.println(e);
             }

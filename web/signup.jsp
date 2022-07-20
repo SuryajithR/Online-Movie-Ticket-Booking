@@ -30,7 +30,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="Dmitry Volkov">
-	<title>FlixGo – Online Movies, TV Shows & Cinema HTML Template</title>
+	<title>PVR Cinemas</title>
 
 </head>
 <body class="body">
@@ -97,11 +97,8 @@
         
 <script type="text/javascript">
     var status = document.getElementById("status").value;
-    if(status === "success") {
-        swal("Congrats", "Account Created Successfully", "success");
-    }
-    else(status === "failed") {
-        swal("Sorry", "Account Not Created", "error");
+    if(status === "true") {
+        swal("Success", "Account created successfully", "success");
     }
 </script>
 </body>
