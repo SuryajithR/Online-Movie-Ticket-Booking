@@ -355,12 +355,12 @@ $(document).ready(function(){
 <div id="#">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action="editFinal.jsp" method="post" enctype="multipart/form-data">
+			
 				<div class="modal-header">						
 					<h4 class="modal-title">Edit Movie</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-                                                                <%
+                                <%
                                     String id=request.getParameter("id");
                                     try {
                                         Class.forName("com.mysql.jdbc.Driver");
@@ -368,17 +368,21 @@ $(document).ready(function(){
                                         Statement st = con.createStatement();
                                         String sql = "SELECT * FROM movie_details where movie_id="+id;
                                         ResultSet rs = st.executeQuery(sql);
-                                        while (rs.next()) {   
+                                        while (rs.next()) {
+                                            String mid  = rs.getString("movie_id");
                                             String moviename = rs.getString("movie_name");
                                             String desc = rs.getString("movie_desc");
                                             String genre = rs.getString("genre");
-                                            String filename = rs.getString("file_name");
                                             String rdate = rs.getString("release_date");
-                                            String edate = rs.getString("end_date");
+                                            String now = rs.getString("now_r");
                                             String stime = rs.getString("show_time");
-                                          String path = rs.getString("path");
                                         %>
+                        <form action="editFinal.jsp" method="post">
 				<div class="modal-body">
+                                        <label>Name</label>
+                                        <div class="form-group">
+                                            <input type="text" name="mid" value="<%=mid%>" class="form-control">
+                                        </div>
 					<div class="form-group">
 						<label>Name</label>
 						<input type="text" name="moviename" value="<%=moviename%>" class="form-control" required>
@@ -391,13 +395,7 @@ $(document).ready(function(){
 						<label>Genre</label>
 						<input type="text" name="genre" value="<%=genre%>" class="form-control" required>
 					</div>
-                                        <div class="form-group">
-						<label>Image</label>
-						<input type="text" value="<%=filename%>" name="file" required>
-					</div>					<div class="form-group">
-						<label>Image Link</label>
-						<input type="text" value="<%=path%>" name="file" required>
-					</div>
+                                        
                                         <div class="form-group">
 						<label>Release Date</label>
                                                 <div class='input-group date' id='datetimepicker1'>
@@ -405,16 +403,11 @@ $(document).ready(function(){
                                                         <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                         </span>
-                                                              <script type="text/javascript">
-                                                                 $(function () {
-                                                                     $('#datetimepicker1').datetimepicker();
-                                                                 });
-                                                              </script>
                                                 </div>
 					</div>
                                         <div class="form-group">
-						<label>End date</label>
-						<input type="text" name="edate" value="<%=edate%>" class="form-control" required>
+						<label>Now running</label>
+						<input type="text" name="now" value="<%=now%>" class="form-control" required>
 					</div>
                                         <div class="form-group">
 						<label>Show Time</label>
@@ -428,7 +421,7 @@ $(document).ready(function(){
 			</form>
 		</div>
 	</div>
-                                                        <%
+<%
                 }
 con.close();
             } catch (Exception e) {

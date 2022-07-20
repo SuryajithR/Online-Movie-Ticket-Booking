@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -48,7 +49,7 @@ public class FileUpload extends HttpServlet {
         String moviedesc = request.getParameter("moviedesc");
         String genre = request.getParameter("genre");
         String rdate = request.getParameter("rdate");
-        String edate = request.getParameter("edate");
+        String now = request.getParameter("now");
         String stime = request.getParameter("stime");
 
         Part part = request.getPart("file");//
@@ -92,18 +93,23 @@ public class FileUpload extends HttpServlet {
             pst.setString(5, dbFileName);
             pst.setString(6, savePath);
             pst.setString(7, rdate);
-            pst.setString(8, edate);
+            pst.setString(8, now);
             pst.setString(9, stime);
             pst.executeUpdate();
             
-            PreparedStatement ps = con.prepareStatement("insert into now_running values(?,?,?,?,?,?)");
-            ps.setInt(1, id);
-            ps.setString(2, moviename);
-            ps.setString(3, moviedesc);
-            ps.setString(4, genre);
-            ps.setString(5, dbFileName);
-            ps.setString(6, savePath);
-            ps.executeUpdate();
+            
+            if("true".equals(now)){
+                PreparedStatement ps = con.prepareStatement("insert into now_running values(?,?,?,?,?,?) ");
+                ps.setInt(1, id);
+                ps.setString(2, moviename);
+                ps.setString(3, moviedesc);
+                ps.setString(4, genre);
+                ps.setString(5, dbFileName);
+                ps.setString(6, savePath);
+                ps.executeUpdate();
+                }
+            
+            
             
 //            dispatcher = request.getRequestDispatcher("adminhome.jsp");
 //            dispatcher.forward(request, response);

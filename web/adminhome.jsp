@@ -36,7 +36,70 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script language="javascript">
+function deleteRecord(id){
+    var doIt=confirm('Do you want to delete the record?');
+  if(doIt){
+   var f=document.form;
+    f.method="post";
+    f.action='../DeleteServlet?id='+id;
+    f.submit();
+    }
+  else{
+
+    }
+}
+</script>
+<script type="text/javascript">
+    $(function cale () {
+    $('#datetimepicker1').datetimepicker();
+    });
+</script>
 <style>
+    
+
+    
+:root {
+    --theme-yellow:   #FEE715FF;
+    --theme-black:    #101820FF;
+    --theme-gray:       #8892B0;
+
+}
+
+body {
+  background-color: var(--theme-black);
+}
+
+/* SECTION VERTICAL TABS */
+#experienceTab.nav-pills .nav-link.active {
+    color: var(--theme-yellow) !important;
+    background-color: transparent;
+    border-radius: 0px;
+    border-left: 3px solid var(--theme-yellow);
+}
+#experienceTab.nav-pills .nav-link {
+    border-radius: 0px;
+    border-left: 2px solid var(--theme-gray);
+}
+.date-range {
+    letter-spacing: 0.01em;
+    color: var(--theme-gray);
+}
+
+/* STUB  LINKS */
+a {
+    color: var(--theme-gray);
+    transition: 0.3s eas-in-out;
+}
+a:hover {
+    color: var(--theme-yellow);
+}
+    
+    
+    
+    
+    
+    
 body {
 	color: #566787;
 	background: #f5f5f5;
@@ -262,6 +325,7 @@ table.table .avatar {
 	font-weight: normal;
 }	
 </style>
+
 <script>
 $(document).ready(function(){
 	// Activate tooltip
@@ -319,7 +383,7 @@ $(document).ready(function(){
 </head>
 <body>
     
-    	<header class="header">
+    	<header class="headerr">
 		<div class="header__wrap">
 			<div class="container">
 				<div class="row">
@@ -332,14 +396,10 @@ $(document).ready(function(){
 							<!-- end header logo -->
 
 							<!-- header auth -->
-							<div class="header__auth">
+<!--							<div class="header__auth">
 								<a class="header__nav-link" href="index.jsp" role="button">Sign Out</a>
 
-<!--								<a class="header__sign-in">
-									<i class="icon ion-ios-log-in"></i>
-									<span><%=session.getAttribute("name")%></span>
-								</a>-->
-							</div>
+							</div>-->
 							<!-- end header auth -->
 						</div>
 					</div>
@@ -350,199 +410,7 @@ $(document).ready(function(){
     
     
         <br><br><br><br><br>
-        
-        
-<!--Movie Details table-->    
-<div class="container-xl">
-	<div class="table-responsive">
-		<div class="table-wrapper">
-			<div class="table-title">
-				<div class="row">
-					<div class="col-sm-6">
-						<h2>Manage <b>Movies</b></h2>
-					</div>
-					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Movie</span></a>
-					</div>
-				</div>
-			</div>
-
-			<table class="table table-dark">
-				<thead>
-					<tr>
-						<th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
-						</th>
-						<th>Id</th>
-						<th>Name</th>
-						<th>Description</th>
-                                                <th>Genre</th>
-                                                <th>Release Date</th>
-                                                <th>End Date</th>
-                                                <th>Show Time</th>
-						<th>Image</th>
-					</tr>
-				</thead>
-                                <%
-                                    try {
-                                        Class.forName("com.mysql.jdbc.Driver");
-                                        Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
-                                        Statement st = con.createStatement();
-                                        String sql = "SELECT * FROM movie_details";
-                                        ResultSet rs = st.executeQuery(sql);
-                                        while (rs.next()) {
-                                            String id = rs.getString("movie_id");    
-                                            String moviename = rs.getString("movie_name");
-                                            String desc = rs.getString("movie_desc");
-                                            String genre = rs.getString("genre");
-                                            String filename = rs.getString("file_name");
-                                            String rdate = rs.getString("release_date");
-                                            String edate = rs.getString("end_date");
-                                            String stime = rs.getString("show_time");
-//                                          String path = rs.getString("path");
-                                        %>
-				<tbody>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span>
-						</td>
-						<td><%=id%></td>
-						<td><%=moviename%></td>
-						<td><%=desc%></td>
-						<td><%=genre%></td>
-                                                <td><%=rdate%></td>
-                                                <td><%=edate%></td>
-                                                <td><%=stime%></td>
-                                                <td><image src="<%=filename%>" width="150" height="100"/></td>
-						<td>
-							<a href="EditMovie.jsp?id=<%=id%>" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							
-						</td>
-					</tr>
-                                                <%
-                }
-            } catch (Exception e) {
-                out.println(e);
-            }
-        %>
-				</tbody>
-			</table>
-
-			<div class="clearfix">
-				<!--<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>-->
-<!--				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item active"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-				</ul>-->
-			</div>
-		</div>
-	</div>        
-</div>
-                                
-<!--NOW RUNNING TABLE-->
-<div class="container-xl">
-	<div class="table-responsive">
-		<div class="table-wrapper">
-			<div class="table-title">
-				<div class="row">
-					<div class="col-sm-6">
-						<h2>Currently <b>Running</b></h2>
-					</div>
-					<div class="col-sm-6">
-<!--						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Movie</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						-->
-					</div>
-				</div>
-			</div>
-
-			<table class="table table-dark">
-				<thead>
-					<tr>
-						<th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
-						</th>
-						<th>Id</th>
-						<th>Name</th>
-						<th>Description</th>
-                                                <th>Genre</th>
-                                                <th>Image</th>
-					</tr>
-				</thead>
-                                <%
-                                    try {
-                                        Class.forName("com.mysql.jdbc.Driver");
-                                        Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
-                                        Statement st = con.createStatement();
-                                        String sql = "SELECT * FROM now_running";
-                                        ResultSet rs = st.executeQuery(sql);
-                                        while (rs.next()) {
-                                            String id = rs.getString("movie_id");    
-                                            String moviename = rs.getString("movie_name");
-                                            String desc = rs.getString("movie_desc");
-                                            String genre = rs.getString("genre");
-                                            String filename = rs.getString("file_name");
-//                                          String path = rs.getString("path");
-                                        %>
-				<tbody>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span>
-						</td>
-						<td><%=id%></td>
-						<td><%=moviename%></td>
-						<td><%=desc%></td>
-						<td><%=genre%></td>
-                                                <td><image src="<%=filename%>" width="150" height="100"/></td>
-						<td>
-							<!--<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
-							<a href="deleteMovie.jsp?id=<%=id%>" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-                                                <%
-                }
-            } catch (Exception e) {
-                out.println(e);
-            }
-        %>
-				</tbody>
-			</table>
-
-			<div class="clearfix">
-				<!--<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>-->
-<!--				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item active"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-				</ul>-->
-			</div>
-		</div>
-	</div>        
-</div>                                
-                                
-                                
-                                
-                                
+                             
 <!-- ADD Modal HTML -->
 <div id="addEmployeeModal" class="modal fade">
     <form action="FileUpload" method="post" enctype="multipart/form-data">
@@ -576,33 +444,14 @@ $(document).ready(function(){
 					</div>
                                         <div class="form-group">
 						<label>Release Date</label>
-<!--						<input type="text" name="rdate" class="form-control" required>-->
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                        <input type='text' name="rdate" class="form-control" />
-                                                        <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                                              <script type="text/javascript">
-                                                                 $(function () {
-                                                                     $('#datetimepicker1').datetimepicker();
-                                                                 });
-                                                              </script>
-                                                </div>
+                                                <input type="date" class="form-control" required>
 					</div>
                                         <div class="form-group">
-						<label>End date</label>
-						<!--<input type="text" name="edate" class="form-control" required>-->
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                        <input type='text' name="edate" class="form-control" />
-                                                        <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                                              <script type="text/javascript">
-                                                                 $(function () {
-                                                                     $('#datetimepicker1').datetimepicker();
-                                                                 });
-                                                              </script>
-                                                </div>
+                                            <label>Now running</label>
+                                            <select name="now" id="now" class="form-control" required>
+                                                <option value="true">True</option>
+                                                <option value="false">False</option>
+                                              </select>
 					</div>
                                         <div class="form-group">
 						<label>Show Time</label>
@@ -618,90 +467,297 @@ $(document).ready(function(){
 	</div>
         </form>
 </div>
-        
-<!-- Edit Modal HTML -->
-<div id="editEmployeeModal" class="modal fade">
-    
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form action="EditMovie" method="post" enctype="multipart/form-data">
-				<div class="modal-header">						
-					<h4 class="modal-title">Edit Movie</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">
-                                        <div class="form-group">
-						<label>Id</label>
-						<input type="number" name="movie_id" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Name</label>
-						<input type="text" name="moviename" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Description</label>
-						<input type="text" name="moviedesc" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Genre</label>
-						<input type="text" name="genre" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Image Link</label>
-						<input type="file" name="file" required>
-					</div>
-                                        <div class="form-group">
-						<label>Release Date</label>
-<!--						<input type="text" name="rdate" class="form-control" required>-->
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                        <input type='text' name="rdate" class="form-control" />
-                                                        <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                                              <script type="text/javascript">
-                                                                 $(function () {
-                                                                     $('#datetimepicker1').datetimepicker();
-                                                                 });
-                                                              </script>
+
+<!--Tab content-->
+<div class="row p-5">
+  <div class="col-md-2 mb-13">
+    <ul class="nav nav-pills flex-column" id="experienceTab" role="tablist">
+      <li class="nav-item">
+        <span class="sign__text"></span><br><br><br><br><br><br>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" style="display:block" id="profile-tab" data-toggle="tab" href="#t1" role="tab" aria-controls="profile" aria-selected="false">Movie Master</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#t2" role="tab" aria-controls="profile" aria-selected="false">Now running</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#t3" role="tab" aria-controls="profile" aria-selected="false">Booking Status</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#t4" role="tab" aria-controls="profile" aria-selected="false">Payment Details</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" href="index.jsp">Sign Out</a>
+      </li>
+    </ul>
+  </div>
+  <!-- /.col-md-4 -->
+  <div class="col-md-10">
+    <div class="tab-content" id="experienceTabContent">
+
+      <div class="tab-pane fade show active text-left text-light" id="t1" role="tabpanel" aria-labelledby="home-tab">
+
+<!--Movie Details table code-->    
+        <div class="container-x2">
+                <div class="table-responsive">
+                        <div class="table-wrapper">
+                                <div class="table-title">
+                                        <div class="row">
+                                                <div class="col-sm-6">
+                                                        <h2>Manage <b>Movies</b></h2>
                                                 </div>
-					</div>
-                                        <div class="form-group">
-						<label>End date</label>
-						<input type="text" name="edate" class="form-control" required>
-					</div>
-                                        <div class="form-group">
-						<label>Show Time</label>
-						<input type="text" name="stime" class="form-control" required>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-info" value="Save">
-				</div>
-			</form>
-		</div>
-	</div>
+                                                <div class="col-sm-6">
+                                                        <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Movie</span></a>
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <table class="table table-dark">
+                                        <thead>
+                                                <tr>
+                                                        <th>
+                                                                <span class="custom-checkbox">
+                                                                        <input type="checkbox" id="selectAll">
+                                                                        <label for="selectAll"></label>
+                                                                </span>
+                                                        </th>
+                                                        <th>Id</th>
+                                                        <th>Name</th>
+                                                        <th>Description</th>
+                                                        <th>Genre</th>
+                                                        <th>Release Date</th>
+                                                        <th>Now running</th>
+                                                        <th>Show Time</th>
+                                                        <th>Image</th>
+                                                </tr>
+                                        </thead>
+                                        <%
+                                            try {
+                                                Class.forName("com.mysql.jdbc.Driver");
+                                                Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+                                                Statement st = con.createStatement();
+                                                String sql = "SELECT * FROM movie_details";
+                                                ResultSet rs = st.executeQuery(sql);
+                                                while (rs.next()) {
+                                                    String id = rs.getString("movie_id");    
+                                                    String moviename = rs.getString("movie_name");
+                                                    String desc = rs.getString("movie_desc");
+                                                    String genre = rs.getString("genre");
+                                                    String filename = rs.getString("file_name");
+                                                    String rdate = rs.getString("release_date");
+                                                    String now = rs.getString("now_r");
+                                                    String stime = rs.getString("show_time");
+        //                                          String path = rs.getString("path");
+                                                %>
+                                        <tbody>
+                                                <tr>
+                                                        <td>
+                                                                <span class="custom-checkbox">
+                                                                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                                                        <label for="checkbox1"></label>
+                                                                </span>
+                                                        </td>
+                                                        <td><%=id%></td>
+                                                        <td><%=moviename%></td>
+                                                        <td><%=desc%></td>
+                                                        <td><%=genre%></td>
+                                                        <td><%=rdate%></td>
+                                                        <td><%=now%></td>
+                                                        <td><%=stime%></td>
+                                                        <td><image src="<%=filename%>" width="150" height="100"/></td>
+                                                        <td>
+                                                                <a href="EditMovie.jsp?id=<%=id%>" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+
+                                                        </td>
+                                                </tr>
+                                                        <%
+                        }
+                    } catch (Exception e) {
+                        out.println(e);
+                    }
+                %>
+                                        </tbody>
+                                </table>
+
+                                <div class="clearfix">
+                                        <!--<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>-->
+        <!--				<ul class="pagination">
+                                                <li class="page-item disabled"><a href="#">Previous</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                                <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">4</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">5</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                                        </ul>-->
+                                </div>
+                        </div>
+                </div>        
+        </div>
+      </div>
+<!--Movie details code end-->
+
+      <div class="tab-pane fade text-left text-light" id="t2" role="tabpanel" aria-labelledby="profile-tab">
+          
+          
+<!--Now running table code-->
+        <div class="container-x2">
+                <div class="table-responsive">
+                        <div class="table-wrapper">
+                                <div class="table-title">
+                                        <div class="row">
+                                                <div class="col-sm-6">
+                                                        <h2>Currently <b>Running</b></h2>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <table class="table table-dark">
+                                        <thead>
+                                                <tr>
+                                                        <th>
+                                                                <span class="custom-checkbox">
+                                                                        <input type="checkbox" id="selectAll">
+                                                                        <label for="selectAll"></label>
+                                                                </span>
+                                                        </th>
+                                                        <th>Id</th>
+                                                        <th>Name</th>
+                                                        <th>Description</th>
+                                                        <th>Genre</th>
+                                                        <th>Image</th>
+                                                </tr>
+                                        </thead>
+                                        <%
+                                            try {
+                                                Class.forName("com.mysql.jdbc.Driver");
+                                                Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+                                                Statement st = con.createStatement();
+                                                String sql = "SELECT * FROM now_running";
+                                                ResultSet rs = st.executeQuery(sql);
+                                                while (rs.next()) {
+                                                    String id = rs.getString("movie_id");    
+                                                    String moviename = rs.getString("movie_name");
+                                                    String desc = rs.getString("movie_desc");
+                                                    String genre = rs.getString("genre");
+                                                    String filename = rs.getString("file_name");
+        //                                          String path = rs.getString("path");
+                                                %>
+                                        <tbody>
+                                                <tr>
+                                                        <td>
+                                                                <span class="custom-checkbox">
+                                                                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                                                        <label for="checkbox1"></label>
+                                                                </span>
+                                                        </td>
+                                                        <td><%=id%></td>
+                                                        <td><%=moviename%></td>
+                                                        <td><%=desc%></td>
+                                                        <td><%=genre%></td>
+                                                        <td><image src="<%=filename%>" width="150" height="100"/></td>
+                                                        <td>
+                                                                <!--<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
+                                                                <a href="deleteMovie.jsp?id=<%=id%>" onclick="deleteRecord(<%=rs.getString(1)%>);" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                                        </td>
+                                                </tr>
+                                                        <%
+                        }
+                    } catch (Exception e) {
+                        out.println(e);
+                    }
+                %>
+                                        </tbody>
+                                </table>
+
+                                <div class="clearfix">
+                                        <!--<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>-->
+        <!--				<ul class="pagination">
+                                                <li class="page-item disabled"><a href="#">Previous</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                                <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">4</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">5</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                                        </ul>-->
+                                </div>
+                        </div>
+                </div>        
+        </div>
+<!--Now running table code end-->
+                                        
+                                        
+      </div>
+                                        
+      <div class="tab-pane fade text-left text-light" id="t3" role="tabpanel" aria-labelledby="profile-tab">
+          
+          
+<!--Booking table code-->
+        <div class="container-x2">
+                <div class="table-responsive">
+                        <div class="table-wrapper">
+                                <div class="table-title">
+                                        <div class="row">
+                                                <div class="col-sm-6">
+                                                        <h2>Booking <b>Status</b></h2>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <table class="table table-dark">
+                                        <thead>
+                                                <tr>
+                                                        <th>Count</th>
+                                                        
+                                                </tr>
+                                        </thead>
+                                        <%
+                                            try {
+                                                Class.forName("com.mysql.jdbc.Driver");
+                                                Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+                                                Statement st = con.createStatement();
+                                                String sql = "SELECT COUNT(*) FROM booking";
+                                                ResultSet rs = st.executeQuery(sql);
+                                                while (rs.next()) {
+                                                    String c = rs.getString("COUNT(*)");
+                                                %>
+                                        <tbody>
+                                                <tr>
+                                                        <td><%=c%></td>
+                                                        
+                                                </tr>
+                <%
+                        }
+                    } catch (Exception e) {
+                        out.println(e);
+                    }
+                %>
+                                        </tbody>
+                                </table>
+
+                                <div class="clearfix">
+                                </div>
+                        </div>
+                </div>        
+        </div>
+<!--Booking table code end-->
+                                        
+                                        
+      </div>                                       
+
+                                        
+    </div><!--tab content end-->
+  </div><!-- col-md-8 end -->
 </div>
-<!-- Delete Modal HTML -->
-<div id="deleteEmployeeModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form>
-				<div class="modal-header">						
-					<h4 class="modal-title">Delete Employee</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<p>Are you sure you want to delete these Records?</p>
-					<p class="text-warning"><small>This action cannot be undone.</small></p>
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-danger" value="Delete">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
+
+
+
+
 </body>
 </html>

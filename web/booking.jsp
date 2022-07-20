@@ -151,98 +151,34 @@
 		<!-- details content -->
 		<div class="container">
 			<div class="row">
-                                             <%
-                                            String id=request.getParameter("id");
-                                            try {
-                                                Class.forName("com.mysql.jdbc.Driver");
-                                                Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
-                                                Statement st = con.createStatement();
-                                                String sql = "SELECT * FROM now_running where movie_id="+id;
-                                                ResultSet rs = st.executeQuery(sql);
-                                                while (rs.next()) {
-                                                    String mname = rs.getString("movie_name");
-//                                                  String desc = rs.getText("movie_desc");
-                                                    String genre = rs.getString("genre");
-                                                    String filename = rs.getString("file_name");
-                                                
-                                        %>
-				<!-- title -->
-				<div class="col-12">
-					<h1 class="details__title"><%=mname%></h1>
-				</div>
-				<!-- end title -->
-
-				<!-- content -->
-				<div class="col-10">
-					<div class="card card--details card--series">
-						<div class="row">
-							<!-- card cover -->
-							<div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-3">
-								<div class="card__cover">
-									<img src="<%=filename%>" alt="">
-								</div>
+                            <%
+                            String id=request.getParameter("id");
+                            %>
+                            
+                            
+                            <form method="post" action="bookInsert.jsp" class="signn__form">
+                                                        <input type="hidden" name="id" value="<%=id%>">
+							<div class="sign__group">
+								<input type="text" name="seat" id="name" class="signn__input" placeholder="No of Seats required" required>
 							</div>
-							<!-- end card cover -->
 
-							<!-- card content -->
-							<div class="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-9">
-								<div class="card__content">
-									<div class="card__wrap">
-										<span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
-
-										<ul class="card__list">
-											<li>HD</li>
-											<li>16+</li>
-										</ul>
-									</div>
-
-									<ul class="card__meta">
-										<li><span>Genre:</span> <a href="#">Action</a>
-										<a href="#"><%=genre%></a></li>
-										
-                                                                                
-									</ul>
-                                                                        <div class="card__description card__description--details">
-                                                                            A film – also called a movie, motion picture, moving picture, picture or photoplay – is a work of visual art that simulates experiences and otherwise communicates ideas, stories, perceptions, feelings, beauty, or atmosphere through the use of moving images. These images are generally accompanied by sound and, more rarely, other sensory stimulations.[1] The word "cinema", short for cinematography, is often used to refer to filmmaking and the film industry, and to the art form that is the result of it.
-									</div>
-
-									
-								</div>
+							<div class="sign__group">
+                                                            <span class="sign__text">Select show time</span><br>
+                                                                    <select name="stime" id="stime" class="signn__input">
+                                                                        <option value="12:00">12:00</option>
+                                                                        <option value="09:00">09:00</option>
+                                                                    </select>
 							</div>
-							<!-- end card content -->
-						</div>
-					</div>
-				</div>
-				<!-- end content -->
-
-				
-
-			
-
-				<div class="col-12">
-					<div class="details__wrap">
-						<!-- availables -->
-						<div class="details__devices">
 							
-                                                       </div>
-						<!-- end availables -->
-                                                <!-- share -->
-						<div class="details__share">
-							<a href="booking.jsp?id=<%=id%>" class="header__sign-in">
-									<i class="icon ion-ios-log-in"></i>
-									<span>Book Now</span>
-								</a>
-						</div>
-						<!-- end share -->
-						
-					</div>
-				</div>
-        <%
-                }
-            } catch (Exception e) {
-                out.println(e);
-            }
-        %>
+							<button class="sign__btn" type="submit">Proceed to payment</button>
+
+						</form>
+                            
+                            
+                            
+                            
+                            
+                            
 			</div>
 		</div>
 		<!-- end details content -->
