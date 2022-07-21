@@ -1,8 +1,7 @@
-[![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com)
-
-
 <h1 align="middle">O N L I N E &nbsp; M O V I E T &nbsp; T I C K E T &nbsp; B O O K I N G</h1>
-<h4 align="middle">Online web application built to book movie tickets for a theatre.</h4>
+<h4 align="middle">Online Movie Ticket Booking System is a website for providing the customers
+anytime service for booking cinema tickets and providing information about the
+movies for a thetre. Uses Java Server Pages and MySQL Database.</h4>
 
 <br>
 <h1 align="middle">R E M E M B E R &nbsp; T H A T</h1>
