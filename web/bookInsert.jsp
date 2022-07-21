@@ -18,7 +18,7 @@
         <%
 //            String uname = session.getAttribute("name");
             String uid="1";
-            String uname="Babu";
+            String uname="Swetha";
             String mid = request.getParameter("id");
             String seatno =request.getParameter("seat");
             String stime =request.getParameter("stime");

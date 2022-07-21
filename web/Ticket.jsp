@@ -38,6 +38,86 @@
 	<meta name="keywords" content="">
 	<meta name="author" content="Dmitry Volkov">
 	<title>PVR Cinemas</title>
+        <style>     
+#invoice-POS{
+  box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
+  padding:2mm;
+  margin: 0 auto;
+  width: 44mm;
+  background: #FFF;
+} 
+  
+::selection {background: #f31544; color: #FFF;}
+::moz-selection {background: #f31544; color: #FFF;}
+h1{
+  font-size: 1.5em;
+  color: #222;
+}
+h2{font-size: .9em;}
+h3{
+  font-size: 1.2em;
+  font-weight: 300;
+  line-height: 2em;
+}
+p{
+  font-size: .7em;
+  color: #666;
+  line-height: 1.2em;
+}
+ 
+#top, #mid,#bot{ /* Targets all id with 'col-' */
+  border-bottom: 1px solid #EEE;
+}
+
+#top{min-height: 100px;}
+#mid{min-height: 80px;} 
+#bot{ min-height: 50px;}
+
+#top .logo{
+	height: 60px;
+	width: 60px;
+	background: url(http://michaeltruong.ca/images/logo1.png) no-repeat;
+	background-size: 60px 60px;
+}
+.clientlogo{
+  float: left;
+	height: 60px;
+	width: 60px;
+	background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;
+	background-size: 60px 60px;
+  border-radius: 50px;
+}
+.info{
+  display: block;
+  margin-left: 0;
+}
+.title{
+  float: right;
+}
+.title p{text-align: right;} 
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+td{
+
+}
+.tabletitle{
+  padding: 5px;
+  font-size: .5em;
+  background: #EEE;
+}
+.service{border-bottom: 1px solid #EEE;}
+.item{width: 24mm;}
+.itemtext{font-size: .5em;}
+
+#legalcopy{
+  margin-top: 5mm;
+}
+
+  
+ 
+</style>
 
 </head>
 <body class="body">
@@ -142,99 +222,56 @@
 	</header>
 	<!-- end header -->
 
-	<!-- details -->
-	<section class="section details">
-		<!-- details background -->
-		<div class="details__bg" data-bg="img/home/home__bg.jpg"></div>
-		<!-- end details background -->
 
-		<!-- details content -->
-		<div class="container">
-			<div class="row">
-                            <%
-                                    String id=request.getParameter("id");
-                                    try {
-                                        Class.forName("com.mysql.jdbc.Driver");
-                                        Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
-                                        Statement st = con.createStatement();
-                                        String sql = "SELECT * FROM booking";
-                                        ResultSet rs = st.executeQuery(sql);
-                                        
-                                        while (rs.next()) {
-                                            String username = rs.getString("uname");
-                                            String moviename = rs.getString("mname");
-                                            String seatno = rs.getString("seatno");
-                                        %>
-                            
-                            
-                            <form method="post" action="Ticket.jsp" class="signn__form">
-                                                        <input type="hidden" name="id" value="<%=id%>">
-							<div class="sign__group">
-								<!--<input type="text" name="seat" value="<%=username%>" class="signn__input" placeholder="Name" readonly>-->
-							</div>
-                                                        <div class="sign__group">
-								<input type="text" name="seat" value="<%=moviename%>" class="signn__input" placeholder="Movie Selected" readonly>
-							</div>
-                                                        <div class="sign__group">
-								<input type="text" name="seat" value="<%= seatno %>" class="signn__input" placeholder="No. of seats required" readonly>
-							</div>
-                                                        <div class="sign__group">
-								<input type="text" name="seat" value="$750" class="signn__input" placeholder="Amount" readonly>
-							</div>
+        <br><br><br><br><br><br>
+  <div id="invoice-POS">
+    
+    <center id="top">
+      <div class="logo"></div>
+      <div class="info"> 
+        <h2>PVR Cinemas</h2>
+      </div><!--End Info-->
+    </center><!--End InvoiceTop-->
+    
+    <div id="mid">
+      <div class="info">
+        <h2>Movie Ticket</h2>
+        
+      </div>
+    </div><!--End Invoice Mid-->
+    
+    <div id="bot">
 
-							
-							
-							<button class="sign__btn" type="submit">Pay</button>
+					<div id="table">
+						<table>
+							<tr class="tabletitle">
+								<td class="item"><h2>Item</h2></td>
+								<td class="Hours"><h2>Qty</h2></td>
+								<td class="Rate"><h2>Sub Total</h2></td>
+							</tr>
 
-						</form>
-                            <%
-                }
-con.close();
-            } catch (Exception e) {
-                out.println(e);
-            }
-        %>
-                            
-                            
-                            
-                            
-                            
-			</div>
-		</div>
-		<!-- end details content -->
-	</section>
-	<!-- end details -->
+							<tr class="service">
+								<td class="tableitem"><p class="itemtext">Movie Ticket</p></td>
+								<td class="tableitem"><p class="itemtext">1</p></td>
+								<td class="tableitem"><p class="itemtext">$750.00</p></td>
+							</tr>
 
+							<tr class="tabletitle">
+								<td></td>
+								<td class="Rate"><h2>Total</h2></td>
+								<td class="payment"><h2>$750.00</h2></td>
+							</tr>
 
-	<!-- footer -->
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<!-- footer list -->
-			
-				<!-- end footer list -->
+						</table>
+					</div><!--End Table-->
 
-				<!-- footer list -->
-				
-				<!-- end footer list -->
+					<div id="legalcopy">
+						<p class="legal"><strong>Thank you for your Support!</strong> </p>
+					</div>
 
-				<!-- footer list -->
-				
-				<!-- end footer list -->
+				</div><!--End InvoiceBot-->
+  </div><!--End Invoice-->
 
-				<!-- footer list -->
-				
-				<!-- end footer list -->
-
-				<!-- footer copyright -->
-				<div class="col-12">
-					
-				</div>
-				<!-- end footer copyright -->
-			</div>
-		</div>
-	</footer>
-	<!-- end footer -->
 
 	<!-- Root element of PhotoSwipe. Must have class pswp. -->
 	<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">

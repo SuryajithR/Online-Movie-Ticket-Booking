@@ -488,6 +488,9 @@ $(document).ready(function(){
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#t4" role="tab" aria-controls="profile" aria-selected="false">Payment Details</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#t5" role="tab" aria-controls="profile" aria-selected="false">Feedbacks</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" id="profile-tab" href="index.jsp">Sign Out</a>
       </li>
     </ul>
@@ -692,6 +695,81 @@ $(document).ready(function(){
                                         
                                         
       </div>
+                                        
+                                        
+<div class="tab-pane fade text-left text-light" id="t5" role="tabpanel" aria-labelledby="profile-tab">
+          
+          
+<!--Feedback table code-->
+        <div class="container-x2">
+                <div class="table-responsive">
+                        <div class="table-wrapper">
+                                <div class="table-title">
+                                        <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h2>User <b>Feedback</b></h2>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <table class="table table-dark">
+                                        <thead>
+                                                <tr>
+                                                        <th>Id</th>
+                                                        <th>Name</th>
+                                                        <th>Feedback</th>
+                                                </tr>
+                                        </thead>
+                                        <%
+                                            try {
+                                                Class.forName("com.mysql.jdbc.Driver");
+                                                Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+                                                Statement st = con.createStatement();
+                                                String sql = "SELECT * FROM feedback";
+                                                ResultSet rs = st.executeQuery(sql);
+                                                while (rs.next()) {
+                                                    String id = rs.getString("fid");    
+                                                    String name = rs.getString("uname");
+                                                    String fback = rs.getString("fback");
+                                                %>
+                                        <tbody>
+                                                <tr>
+                                                        <td><%=id%></td>
+                                                        <td><%=name%></td>
+                                                        <td><%=fback%></td>
+                                                        <td>
+               
+                                                                <!--<a href="deleteMovie.jsp?id=<%=id%>" onclick="deleteRecord(<%=rs.getString(1)%>);" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>-->
+                                                        </td>
+                                                </tr>
+                                                        <%
+                        }
+                    } catch (Exception e) {
+                        out.println(e);
+                    }
+                %>
+                                        </tbody>
+                                </table>
+
+                                <div class="clearfix">
+                                        <!--<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>-->
+        <!--				<ul class="pagination">
+                                                <li class="page-item disabled"><a href="#">Previous</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                                <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">4</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">5</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                                        </ul>-->
+                                </div>
+                        </div>
+                </div>        
+        </div>
+</div>  
+<!--Feedback table code end-->
                                         
       <div class="tab-pane fade text-left text-light" id="t3" role="tabpanel" aria-labelledby="profile-tab">
           

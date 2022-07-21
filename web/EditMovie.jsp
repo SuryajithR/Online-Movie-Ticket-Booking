@@ -379,9 +379,8 @@ $(document).ready(function(){
                                         %>
                         <form action="editFinal.jsp" method="post">
 				<div class="modal-body">
-                                        <label>Name</label>
                                         <div class="form-group">
-                                            <input type="text" name="mid" value="<%=mid%>" class="form-control">
+                                            <input type="hidden" name="mid" value="<%=mid%>" class="form-control">
                                         </div>
 					<div class="form-group">
 						<label>Name</label>
