@@ -43,7 +43,7 @@
 						<!-- registration form -->
                                                 <form method="post" action="register" class="sign__form"
 							id="register-form">
-							<a href="index.html" class="sign__logo">
+							<a href="index.jsp" class="sign__logo">
 								<img src="img/logo.svg" alt="">
 							</a>
 
