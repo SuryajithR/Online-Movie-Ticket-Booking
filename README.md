@@ -7,5 +7,8 @@ movies for a thetre. Uses Java Server Pages and MySQL Database.</h4>
 <h1 align="middle">R E M E M B E R &nbsp; T H A T</h1>
 <h4 align="middle">While using our code, if you found any errors that's Not a BUG it's a FEATURE</h4>
 
-<br><br><br>
+<br><br>
 <h1 align="middle">T H A N K &nbsp; Y O U</h1>
+
+
+<h4 align="middle">Swetha KJ  &nbsp;&nbsp;|&nbsp;&nbsp;  Suryajith R  &nbsp;&nbsp;|&nbsp;&nbsp;  Yedu Krish TY  &nbsp;&nbsp;|&nbsp;&nbsp;  Vineetha</h4>
