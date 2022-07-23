@@ -224,6 +224,7 @@ td{
 
 
         <br><br><br><br><br><br>
+          <form class="signn__form">
   <div id="invoice-POS">
     
     <center id="top">
@@ -234,45 +235,77 @@ td{
     </center><!--End InvoiceTop-->
     
     <div id="mid">
-      <div class="info">
+      <div class="info" align="center">
         <h2>Movie Ticket</h2>
-        
+        <img src="img/qrcode.png" alt="qr" width="40" height="40">
       </div>
     </div><!--End Invoice Mid-->
+    
+                            <%
+                                    String id=request.getParameter("id");
+                                    try {
+                                        Class.forName("com.mysql.jdbc.Driver");
+                                        Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+                                        Statement st = con.createStatement();
+                                        String sql = "SELECT * FROM booking where id="+id;
+                                        ResultSet rs = st.executeQuery(sql);
+                                        
+                                        while (rs.next()) {
+                                            String username = rs.getString("uname");
+                                            String moviename = rs.getString("mname");
+                                            String stime = rs.getString("stime");
+                                            String seatno = rs.getString("seatno");
+                                            String amount = rs.getString("amount");
+                                        %>
+                                            <div id="mid">
+                                                <div class="info">
+                                                  <h6>Ticket number : <%= id %></h6>
+
+                                                </div>
     
     <div id="bot">
 
 					<div id="table">
 						<table>
 							<tr class="tabletitle">
-								<td class="item"><h2>Item</h2></td>
-								<td class="Hours"><h2>Qty</h2></td>
-								<td class="Rate"><h2>Sub Total</h2></td>
+								<td class="item"><h2>Movie name</h2></td>
+                                                                <td class="item"><h2>Show time</h2></td>
+								<td class="Hours"><h2>No.of seats</h2></td>
 							</tr>
 
 							<tr class="service">
-								<td class="tableitem"><p class="itemtext">Movie Ticket</p></td>
-								<td class="tableitem"><p class="itemtext">1</p></td>
-								<td class="tableitem"><p class="itemtext">$750.00</p></td>
+								<td class="tableitem"><p class="itemtext"><%= moviename %></p></td>
+                                                                <td class="tableitem"><p class="itemtext"><%= stime %></p></td>
+								<td class="tableitem"><p class="itemtext"><%= seatno %></p></td>
 							</tr>
 
 							<tr class="tabletitle">
 								<td></td>
-								<td class="Rate"><h2>Total</h2></td>
-								<td class="payment"><h2>$750.00</h2></td>
+								<td class="Rate"><h2>Amount paid</h2></td>
+								<td class="payment"><h2>$<%= amount %></h2></td>
 							</tr>
 
 						</table>
 					</div><!--End Table-->
 
 					<div id="legalcopy">
-						<p class="legal"><strong>Thank you for your Support!</strong> </p>
+						<p class="legal"><strong>Thank you for your Support!</strong> Please visit again 🙂 </p>
 					</div>
 
 				</div><!--End InvoiceBot-->
   </div><!--End Invoice-->
-
-
+<%
+                }
+con.close();
+            } catch (Exception e) {
+                out.println(e);
+            }
+        %>
+  </div>
+        <div class="sign__group">
+        <button class="sign__btn" type="submit">Download PDF</button>
+        </div>
+</form>
 	<!-- Root element of PhotoSwipe. Must have class pswp. -->
 	<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
@@ -324,6 +357,7 @@ td{
 			</div>
 		</div>
 	</div>
+        
 
 	<!-- JS -->
 	<script src="js/jquery-3.3.1.min.js"></script>

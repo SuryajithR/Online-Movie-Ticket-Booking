@@ -60,7 +60,7 @@ function deleteRecord(id){
 
     
 :root {
-    --theme-yellow:   #FEE715FF;
+    --theme-yellow:   #FFFFFF;
     --theme-black:    #101820FF;
     --theme-gray:       #8892B0;
 
@@ -76,10 +76,12 @@ body {
     background-color: transparent;
     border-radius: 0px;
     border-left: 3px solid var(--theme-yellow);
+    font-size: 16px;
 }
 #experienceTab.nav-pills .nav-link {
     border-radius: 0px;
     border-left: 2px solid var(--theme-gray);
+    font-size: 14px;
 }
 .date-range {
     letter-spacing: 0.01em;
@@ -100,12 +102,12 @@ a:hover {
     
     
     
-body {
+/*body {
 	color: #566787;
 	background: #f5f5f5;
 	font-family: 'Varela Round', sans-serif;
-	font-size: 13px;
-}
+	font-size: 22px;
+}*/
 .table-responsive {
     margin: 30px 0;
 }
@@ -240,60 +242,9 @@ table.table .avatar {
 	margin-top: 10px;
 	font-size: 13px;
 }    
-/* Custom checkbox */
-.custom-checkbox {
-	position: relative;
-}
-.custom-checkbox input[type="checkbox"] {    
-	opacity: 0;
-	position: absolute;
-	margin: 5px 0 0 3px;
-	z-index: 9;
-}
-.custom-checkbox label:before{
-	width: 18px;
-	height: 18px;
-}
-.custom-checkbox label:before {
-	content: '';
-	margin-right: 10px;
-	display: inline-block;
-	vertical-align: text-top;
-	background: white;
-	border: 1px solid #bbb;
-	border-radius: 2px;
-	box-sizing: border-box;
-	z-index: 2;
-}
-.custom-checkbox input[type="checkbox"]:checked + label:after {
-	content: '';
-	position: absolute;
-	left: 6px;
-	top: 3px;
-	width: 6px;
-	height: 11px;
-	border: solid #000;
-	border-width: 0 3px 3px 0;
-	/*transform: inherit;*/
-	z-index: 3;
-	transform: rotateZ(45deg);
-}
-.custom-checkbox input[type="checkbox"]:checked + label:before {
-	border-color: #03A9F4;
-	background: #03A9F4;
-}
-.custom-checkbox input[type="checkbox"]:checked + label:after {
-	border-color: #fff;
-}
-.custom-checkbox input[type="checkbox"]:disabled + label:before {
-	color: #b8b8b8;
-	cursor: auto;
-	box-shadow: none;
-	background: #ddd;
-}
 /* Modal styles */
 .modal .modal-dialog {
-	max-width: 400px;
+	max-width: 450px;
 }
 .modal .modal-header, .modal .modal-body, .modal .modal-footer {
 	padding: 20px 30px;
@@ -310,6 +261,7 @@ table.table .avatar {
 	display: inline-block;
 }
 .modal .form-control {
+        font-size: 15px;
 	border-radius: 2px;
 	box-shadow: none;
 	border-color: #dddddd;
@@ -322,41 +274,22 @@ table.table .avatar {
 	min-width: 100px;
 }	
 .modal form label {
-	font-weight: normal;
-}	
+	font-weight: bold;
+}
+.table-dark{
+  font-size: 15px;
+}
+
+
 </style>
-
-<script>
-$(document).ready(function(){
-	// Activate tooltip
-	$('[data-toggle="tooltip"]').tooltip();
-	
-	// Select/Deselect checkboxes
-	var checkbox = $('table tbody input[type="checkbox"]');
-	$("#selectAll").click(function(){
-		if(this.checked){
-			checkbox.each(function(){
-				this.checked = true;                        
-			});
-		} else{
-			checkbox.each(function(){
-				this.checked = false;                        
-			});
-		} 
-	});
-	checkbox.click(function(){
-		if(!this.checked){
-			$("#selectAll").prop("checked", false);
-		}
-	});
-});
-</script>
-
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 	<!-- CSS -->
 	<link rel="stylesheet" href="css/bootstrap-reboot.min.css">
@@ -379,7 +312,6 @@ $(document).ready(function(){
 
 	<meta name="description" content="">
 	<meta name="keywords" content="">
-	<meta name="author" content="Dmitry Volkov">
 </head>
 <body>
     
@@ -393,14 +325,6 @@ $(document).ready(function(){
 							<a href="adminhome.jsp" class="header__logo">
 								<img src="img/logo.svg" alt="">
 							</a>
-							<!-- end header logo -->
-
-							<!-- header auth -->
-<!--							<div class="header__auth">
-								<a class="header__nav-link" href="index.jsp" role="button">Sign Out</a>
-
-							</div>-->
-							<!-- end header auth -->
 						</div>
 					</div>
 				</div>
@@ -444,7 +368,7 @@ $(document).ready(function(){
 					</div>
                                         <div class="form-group">
 						<label>Release Date</label>
-                                                <input type="date" class="form-control" required>
+                                                <input type="date" name="rdate" class="form-control" required>
 					</div>
                                         <div class="form-group">
                                             <label>Now running</label>
@@ -454,8 +378,20 @@ $(document).ready(function(){
                                               </select>
 					</div>
                                         <div class="form-group">
-						<label>Show Time</label>
-						<input type="text" name="stime" class="form-control" required>
+						<label>Show Time 1</label>
+						<input type="text" name="stime1" class="form-control" required>
+					</div>
+                                    <div class="form-group">
+						<label>Show Time 2</label>
+						<input type="text" name="stime2" class="form-control" required>
+					</div>
+                                    <div class="form-group">
+						<label>Show Time 3</label>
+						<input type="text" name="stime3" class="form-control" required>
+					</div>
+                                    <div class="form-group">
+						<label>Available seat count</label>
+						<input type="text" name="seat" class="form-control" required>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -516,23 +452,20 @@ $(document).ready(function(){
                                         </div>
                                 </div>
 
-                                <table class="table table-dark">
+                            <table class="table table-hover table-dark">
                                         <thead>
                                                 <tr>
-                                                        <th>
-                                                                <span class="custom-checkbox">
-                                                                        <input type="checkbox" id="selectAll">
-                                                                        <label for="selectAll"></label>
-                                                                </span>
-                                                        </th>
                                                         <th>Id</th>
                                                         <th>Name</th>
                                                         <th>Description</th>
                                                         <th>Genre</th>
                                                         <th>Release Date</th>
                                                         <th>Now running</th>
-                                                        <th>Show Time</th>
+                                                        <th>Show Time 1</th>
+                                                        <th>Show Time 2</th>
+                                                        <th>Show Time 3</th>
                                                         <th>Image</th>
+                                                        <th></th>
                                                 </tr>
                                         </thead>
                                         <%
@@ -550,24 +483,21 @@ $(document).ready(function(){
                                                     String filename = rs.getString("file_name");
                                                     String rdate = rs.getString("release_date");
                                                     String now = rs.getString("now_r");
-                                                    String stime = rs.getString("show_time");
-        //                                          String path = rs.getString("path");
-                                                %>
+                                                    String stime1 = rs.getString("show_time_1");
+                                                    String stime2 = rs.getString("show_time_2");
+                                                    String stime3 = rs.getString("show_time_3");
+                                                %>  
                                         <tbody>
                                                 <tr>
-                                                        <td>
-                                                                <span class="custom-checkbox">
-                                                                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                                                        <label for="checkbox1"></label>
-                                                                </span>
-                                                        </td>
                                                         <td><%=id%></td>
                                                         <td><%=moviename%></td>
                                                         <td><%=desc%></td>
                                                         <td><%=genre%></td>
                                                         <td><%=rdate%></td>
                                                         <td><%=now%></td>
-                                                        <td><%=stime%></td>
+                                                        <td><%=stime1%></td>
+                                                        <td><%=stime2%></td>
+                                                        <td><%=stime3%></td>
                                                         <td><image src="<%=filename%>" width="150" height="100"/></td>
                                                         <td>
                                                                 <a href="EditMovie.jsp?id=<%=id%>" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
@@ -621,12 +551,7 @@ $(document).ready(function(){
                                 <table class="table table-dark">
                                         <thead>
                                                 <tr>
-                                                        <th>
-                                                                <span class="custom-checkbox">
-                                                                        <input type="checkbox" id="selectAll">
-                                                                        <label for="selectAll"></label>
-                                                                </span>
-                                                        </th>
+                                                    
                                                         <th>Id</th>
                                                         <th>Name</th>
                                                         <th>Description</th>
@@ -651,12 +576,7 @@ $(document).ready(function(){
                                                 %>
                                         <tbody>
                                                 <tr>
-                                                        <td>
-                                                                <span class="custom-checkbox">
-                                                                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                                                        <label for="checkbox1"></label>
-                                                                </span>
-                                                        </td>
+                                                    
                                                         <td><%=id%></td>
                                                         <td><%=moviename%></td>
                                                         <td><%=desc%></td>
@@ -754,16 +674,6 @@ $(document).ready(function(){
                                 </table>
 
                                 <div class="clearfix">
-                                        <!--<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>-->
-        <!--				<ul class="pagination">
-                                                <li class="page-item disabled"><a href="#">Previous</a></li>
-                                                <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                                <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                                                <li class="page-item"><a href="#" class="page-link">4</a></li>
-                                                <li class="page-item"><a href="#" class="page-link">5</a></li>
-                                                <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                                        </ul>-->
                                 </div>
                         </div>
                 </div>        
@@ -810,12 +720,7 @@ $(document).ready(function(){
                                                         <td><%=c%></td>
                                                         
                                                 </tr>
-                <%
-                        }
-                    } catch (Exception e) {
-                        out.println(e);
-                    }
-                %>
+
                                         </tbody>
                                 </table>
 
@@ -824,6 +729,12 @@ $(document).ready(function(){
                         </div>
                 </div>        
         </div>
+                <%
+                        }
+                    } catch (Exception e) {
+                        out.println(e);
+                    }
+                %>
 <!--Booking table code end-->
                                         
                                         

@@ -177,57 +177,7 @@ table.table .avatar {
 	margin-top: 10px;
 	font-size: 13px;
 }    
-/* Custom checkbox */
-.custom-checkbox {
-	position: relative;
-}
-.custom-checkbox input[type="checkbox"] {    
-	opacity: 0;
-	position: absolute;
-	margin: 5px 0 0 3px;
-	z-index: 9;
-}
-.custom-checkbox label:before{
-	width: 18px;
-	height: 18px;
-}
-.custom-checkbox label:before {
-	content: '';
-	margin-right: 10px;
-	display: inline-block;
-	vertical-align: text-top;
-	background: white;
-	border: 1px solid #bbb;
-	border-radius: 2px;
-	box-sizing: border-box;
-	z-index: 2;
-}
-.custom-checkbox input[type="checkbox"]:checked + label:after {
-	content: '';
-	position: absolute;
-	left: 6px;
-	top: 3px;
-	width: 6px;
-	height: 11px;
-	border: solid #000;
-	border-width: 0 3px 3px 0;
-	/*transform: inherit;*/
-	z-index: 3;
-	transform: rotateZ(45deg);
-}
-.custom-checkbox input[type="checkbox"]:checked + label:before {
-	border-color: #03A9F4;
-	background: #03A9F4;
-}
-.custom-checkbox input[type="checkbox"]:checked + label:after {
-	border-color: #fff;
-}
-.custom-checkbox input[type="checkbox"]:disabled + label:before {
-	color: #b8b8b8;
-	cursor: auto;
-	box-shadow: none;
-	background: #ddd;
-}
+
 /* Modal styles */
 .modal .modal-dialog {
 	max-width: 400px;
@@ -305,6 +255,7 @@ $(document).ready(function(){
 	<link rel="stylesheet" href="css/photoswipe.css">
 	<link rel="stylesheet" href="css/default-skin.css">
 	<link rel="stylesheet" href="css/main.css">
+        
 
 	<!-- Favicons -->
 	<link rel="icon" type="image/png" href="icon/favicon-32x32.png" sizes="32x32">
@@ -358,7 +309,7 @@ $(document).ready(function(){
 			
 				<div class="modal-header">						
 					<h4 class="modal-title">Edit Movie</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
 				</div>
                                 <%
                                     String id=request.getParameter("id");
@@ -375,14 +326,16 @@ $(document).ready(function(){
                                             String genre = rs.getString("genre");
                                             String rdate = rs.getString("release_date");
                                             String now = rs.getString("now_r");
-                                            String stime = rs.getString("show_time");
+                                            String stime1 = rs.getString("show_time_1");
+                                            String stime2 = rs.getString("show_time_2");
+                                            String stime3 = rs.getString("show_time_3");
                                         %>
                         <form action="editFinal.jsp" method="post">
 				<div class="modal-body">
                                         <div class="form-group">
                                             <input type="hidden" name="mid" value="<%=mid%>" class="form-control">
                                         </div>
-					<div class="form-group">
+					<div class="sign__group">
 						<label>Name</label>
 						<input type="text" name="moviename" value="<%=moviename%>" class="form-control" required>
 					</div>
@@ -409,8 +362,16 @@ $(document).ready(function(){
 						<input type="text" name="now" value="<%=now%>" class="form-control" required>
 					</div>
                                         <div class="form-group">
-						<label>Show Time</label>
-						<input type="text" name="stime" value="<%=stime%>" class="form-control" required>
+						<label>Show Time 1</label>
+						<input type="text" name="stime1" value="<%=stime1%>" class="form-control" required>
+					</div>
+                                        <div class="form-group">
+						<label>Show Time 2</label>
+						<input type="text" name="stime2" value="<%=stime2%>" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+						<label>Show Time 3</label>
+						<input type="text" name="stime3" value="<%=stime3%>" class="form-control" required>
 					</div>
 				</div>
 				<div class="modal-footer">

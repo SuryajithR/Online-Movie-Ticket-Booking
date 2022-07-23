@@ -50,7 +50,10 @@ public class FileUpload extends HttpServlet {
         String genre = request.getParameter("genre");
         String rdate = request.getParameter("rdate");
         String now = request.getParameter("now");
-        String stime = request.getParameter("stime");
+        String stime1 = request.getParameter("stime1");
+        String stime2 = request.getParameter("stime2");
+        String stime3 = request.getParameter("stime3");
+        String seatno = request.getParameter("seat");
 
         Part part = request.getPart("file");//
         String fileName = extractFileName(part);//file name
@@ -85,7 +88,7 @@ public class FileUpload extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
-            PreparedStatement pst = con.prepareStatement("insert into movie_details values(?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pst = con.prepareStatement("insert into movie_details values(?,?,?,?,?,?,?,?,?,?,?)");
             pst.setInt(1, id);
             pst.setString(2, moviename);
             pst.setString(3, moviedesc);
@@ -94,7 +97,9 @@ public class FileUpload extends HttpServlet {
             pst.setString(6, savePath);
             pst.setString(7, rdate);
             pst.setString(8, now);
-            pst.setString(9, stime);
+            pst.setString(9, stime1);
+            pst.setString(10, stime2);
+            pst.setString(11, stime3);
             pst.executeUpdate();
             
             
@@ -108,8 +113,11 @@ public class FileUpload extends HttpServlet {
                 ps.setString(6, savePath);
                 ps.executeUpdate();
                 }
-            
-            
+
+            PreparedStatement ps1 = con.prepareStatement("insert into seat values(?,?) ");
+            ps1.setInt(1, id);
+            ps1.setString(2, seatno);
+            ps1.executeUpdate();
             
 //            dispatcher = request.getRequestDispatcher("adminhome.jsp");
 //            dispatcher.forward(request, response);

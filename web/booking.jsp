@@ -153,32 +153,67 @@
 			<div class="row">
                             <%
                             String id=request.getParameter("id");
+                                            try {
+                                                Class.forName("com.mysql.jdbc.Driver");
+                                                Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+                                                Statement st = con.createStatement();
+                                                Statement st1 = con.createStatement();
+                                                String sql = "SELECT * FROM now_running where movie_id="+id;
+                                                String sql1 = "SELECT show_time_1,show_time_2,show_time_3 FROM movie_details where movie_id="+id;
+                                                ResultSet rs = st.executeQuery(sql);
+                                                ResultSet rs1 = st1.executeQuery(sql1);
+                                                while (rs.next()) {
+                                                    String mname = rs.getString("movie_name");
+                                                    if(rs1.next()){
+                                                    String show_time_1 = rs1.getString("show_time_1");
+                                                    String show_time_2 = rs1.getString("show_time_2");
+                                                    String show_time_3 = rs1.getString("show_time_3");
                             %>
                             
                             
                             <form method="post" action="bookInsert.jsp" class="signn__form">
-                                                        <input type="hidden" name="id" value="<%=id%>">
-							<div class="sign__group">
-								<input type="text" name="seat" id="name" class="signn__input" placeholder="No of Seats required" required>
+                                <input type="hidden" name="mid" value="<%=id%>"> <!-- movie_id -->
+                                <input type="hidden" name="uid" value="${uid}">  <!-- user_id -->
+                                                        <div class="sign__group">
+                                                                <span class="sign__text">Your Name</span><br>
+								<input type="text" name="name" id="name" value="${name}" class="signn__input">
 							</div>
-
-							<div class="sign__group">
+                                                        <div class="sign__group">
+                                                                <span class="sign__text">Selected movie</span><br>
+								<input type="text" name="mname" id="mname" value="<%=mname%>" class="signn__input">
+							</div>
+                                                        <div class="sign__group">
                                                             <span class="sign__text">Select show time</span><br>
                                                                     <select name="stime" id="stime" class="signn__input">
-                                                                        <option value="12:00">12:00</option>
-                                                                        <option value="09:00">09:00</option>
+                                                                        <option value="<%=show_time_1%>"><%=show_time_1%></option>
+                                                                        <option value="<%=show_time_2%>"><%=show_time_2%></option>
+                                                                        <option value="<%=show_time_3%>"><%=show_time_3%></option>
                                                                     </select>
 							</div>
+							<div class="sign__group">
+                                                            <span class="sign__text">No of Seats required</span><br>
+								<input type="number" name="seat" id="seat" onkeyup="getOrderTotal()" class="signn__input" placeholder="">
+							</div>
+                                                        <div class="sign__group">
+                                                            <span class="sign__text">Total amount</span><br>
+								<input type="text" name="Amount" id="amount" value="0" class="signn__input">
+							</div>
+                                                        <!--<div id="amount"></div>-->
 							
 							<button class="sign__btn" type="submit">Proceed to payment</button>
+                                                        <a href="details.jsp?id=<%=id%>" class="sign__btn">
+									<span>Cancel</span>
+								</a>
 
 						</form>
                             
-                            
-                            
-                            
-                            
-                            
+        <%
+            }
+                }
+            } catch (Exception e) {
+                out.println(e);
+            }
+        %>
 			</div>
 		</div>
 		<!-- end details content -->
@@ -190,23 +225,6 @@
 	<footer class="footer">
 		<div class="container">
 			<div class="row">
-				<!-- footer list -->
-			
-				<!-- end footer list -->
-
-				<!-- footer list -->
-				
-				<!-- end footer list -->
-
-				<!-- footer list -->
-				
-				<!-- end footer list -->
-
-				<!-- footer list -->
-				
-				<!-- end footer list -->
-
-				<!-- footer copyright -->
 				<div class="col-12">
 					
 				</div>
@@ -281,6 +299,23 @@
 	<script src="js/photoswipe.min.js"></script>
 	<script src="js/photoswipe-ui-default.min.js"></script>
 	<script src="js/main.js"></script>
+        
+    <script>
+                function getOrderTotal() {
+                    var a = document.getElementById("seat").value;
+                    if(a>20){
+                            alert("One user can only book maximum of 10 tickets");
+                            document.getElementById('amount').value=""; 
+                        }
+                    else{
+                    total = a * 200;
+                    document.getElementById('amount').value = total;
+                    }
+                }
+    </script>
+    
+        
+        
 </body>
 
 </html>
