@@ -76,12 +76,12 @@ body {
     background-color: transparent;
     border-radius: 0px;
     border-left: 3px solid var(--theme-yellow);
-    font-size: 16px;
+    font-size: 20px;
 }
 #experienceTab.nav-pills .nav-link {
     border-radius: 0px;
     border-left: 2px solid var(--theme-gray);
-    font-size: 14px;
+    font-size: 18px;
 }
 .date-range {
     letter-spacing: 0.01em;
@@ -281,6 +281,12 @@ table.table .avatar {
 }
 
 
+
+/*progress bar*/
+
+
+
+
 </style>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -412,13 +418,16 @@ table.table .avatar {
         <span class="sign__text"></span><br><br><br><br><br><br>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" style="display:block" id="profile-tab" data-toggle="tab" href="#t1" role="tab" aria-controls="profile" aria-selected="false">Movie Master</a>
+        <a class="nav-link active" style="display:block;" id="home-tab" data-toggle="tab" href="#t0" role="tab" aria-controls="profile" aria-selected="false">Admin home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#t1" role="tab" aria-controls="profile" aria-selected="false">Movie Master</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#t2" role="tab" aria-controls="profile" aria-selected="false">Now running</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#t3" role="tab" aria-controls="profile" aria-selected="false">Booking Status</a>
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#t3" role="tab" aria-controls="profile" aria-selected="false">Available seats</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#t4" role="tab" aria-controls="profile" aria-selected="false">Payment Details</a>
@@ -433,9 +442,63 @@ table.table .avatar {
   </div>
   <!-- /.col-md-4 -->
   <div class="col-md-10">
-    <div class="tab-content" id="experienceTabContent">
+      <div class="tab-content" id="experienceTabContent"><br><br><br>
+    <div class="tab-pane fade show active text-left text-light" id="t0" role="tabpanel" aria-labelledby="home-tab">
 
-      <div class="tab-pane fade show active text-left text-light" id="t1" role="tabpanel" aria-labelledby="home-tab">
+<!--Admin home code--> 
+        <div class="container-x2">   
+            <div class="table-responsive">
+                        <div class="table-wrapper">
+                    <%
+                        try {
+                            Class.forName("com.mysql.jdbc.Driver");
+                            Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+                            Statement st = con.createStatement();
+                            Statement st1 = con.createStatement();
+                            Statement st2 = con.createStatement();
+                            String sql = "SELECT COUNT(*) FROM booking";
+                            String sql1 = "SELECT COUNT(*) FROM users";
+                            String sql2 = "SELECT COUNT(*) FROM now_running";
+                            ResultSet rs = st.executeQuery(sql);
+                            ResultSet rs1 = st1.executeQuery(sql1);
+                            ResultSet rs2 = st2.executeQuery(sql2);
+                            if(rs1.next()){
+                                int users=Integer.parseInt(rs1.getString("COUNT(*)"));
+                            if(rs2.next()){
+                                int run=Integer.parseInt(rs2.getString("COUNT(*)"));
+                            while (rs.next()) {
+                                String c = rs.getString("COUNT(*)");
+                                int book = Integer.parseInt(c);
+                            %>  
+                            
+                    <h2>Total users</h2>       
+                    <div class="progress" style="height: 30px;">
+                    <div class="progress-bar" role="progressbar" style="width: <%=users%>%;" aria-valuenow="<%=users%>" aria-valuemin="0" aria-valuemax="100"><%=users%></div>
+                    </div>
+                    <h2>Currently running movies</h2>       
+                    <div class="progress" style="height: 30px;">
+                    <div class="progress-bar" role="progressbar" style="width: <%=run%>%;" aria-valuenow="<%=run%>" aria-valuemin="0" aria-valuemax="100"><%=run%></div>
+                    </div>
+                    <h2>Total Bookings</h2>        
+                    <div class="progress" style="height: 30px;">
+                    <div class="progress-bar" role="progressbar" style="width: <%=book%>%;" aria-valuenow="<%=book%>" aria-valuemin="0" aria-valuemax="100"><%=book%></div>
+                    </div>
+
+                        <%
+                            }
+                            }
+                            }
+                        } catch (Exception e) {
+                            out.println(e);
+                        }
+                    %>
+                        </div>
+                </div>        
+        </div>
+      </div>
+<!--Admin home code end-->
+
+      <div class="tab-pane fade text-left text-light" id="t1" role="tabpanel" aria-labelledby="profile-tab">
 
 <!--Movie Details table code-->    
         <div class="container-x2">
@@ -597,8 +660,8 @@ table.table .avatar {
                                 </table>
 
                                 <div class="clearfix">
-                                        <!--<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>-->
-        <!--				<ul class="pagination">
+<!--                                        <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+        				<ul class="pagination">
                                                 <li class="page-item disabled"><a href="#">Previous</a></li>
                                                 <li class="page-item"><a href="#" class="page-link">1</a></li>
                                                 <li class="page-item"><a href="#" class="page-link">2</a></li>
@@ -684,14 +747,14 @@ table.table .avatar {
       <div class="tab-pane fade text-left text-light" id="t3" role="tabpanel" aria-labelledby="profile-tab">
           
           
-<!--Booking table code-->
+<!--Seat table code-->
         <div class="container-x2">
                 <div class="table-responsive">
                         <div class="table-wrapper">
                                 <div class="table-title">
                                         <div class="row">
                                                 <div class="col-sm-6">
-                                                        <h2>Booking <b>Status</b></h2>
+                                                        <h2>Available  <b>Seats</b></h2>
                                                 </div>
                                                 <div class="col-sm-6">
                                                 </div>
@@ -701,7 +764,12 @@ table.table .avatar {
                                 <table class="table table-dark">
                                         <thead>
                                                 <tr>
-                                                        <th>Count</th>
+                                                    <th></th>
+                                                        <th>Movie Id</th>
+                                                        <th>Movie Name</th>
+                                                        <th>No of seats available</th>
+                                                        <th>Total no of seats</th>
+                                                        <th></th>
                                                         
                                                 </tr>
                                         </thead>
@@ -710,33 +778,145 @@ table.table .avatar {
                                                 Class.forName("com.mysql.jdbc.Driver");
                                                 Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
                                                 Statement st = con.createStatement();
-                                                String sql = "SELECT COUNT(*) FROM booking";
+                                                Statement st1 = con.createStatement();
+                                                String sql = "SELECT * FROM seat";
                                                 ResultSet rs = st.executeQuery(sql);
                                                 while (rs.next()) {
-                                                    String c = rs.getString("COUNT(*)");
+                                                    String moid = rs.getString("mid");
+                                                    String seat = rs.getString("no_of_seats");
+                                                        String sql1 = "SELECT movie_name FROM now_running where movie_id="+moid;
+                                                        ResultSet rs1 = st1.executeQuery(sql1);
+                                                        if (rs1.next()){
+                                                        String mname = rs1.getString("movie_name");
                                                 %>
                                         <tbody>
                                                 <tr>
-                                                        <td><%=c%></td>
+                                                    <td></td>
+                                                        <td><%=moid%></td>
+                                                        <td><%=mname%></td>
+                                                        <td><%=seat%></td>
+                                                        <td>250</td>
                                                         
                                                 </tr>
 
                                         </tbody>
-                                </table>
-
-                                <div class="clearfix">
-                                </div>
-                        </div>
-                </div>        
-        </div>
-                <%
+               <%
+                        }
                         }
                     } catch (Exception e) {
                         out.println(e);
                     }
                 %>
-<!--Booking table code end-->
+                                </table>
+                        </div>
+                </div>        
+        </div>
+      </div>
+<!--Seat table code end-->
+
+<div class="tab-pane fade text-left text-light" id="t4" role="tabpanel" aria-labelledby="profile-tab">
+          
+          
+<!--Payment tab code-->
+        <div class="container-x2">
+                <div class="table-responsive">
+                        <div class="table-wrapper">
+                                <div class="table-title">
+                                        <div class="row">
+                                                <div class="col-sm-6">
+                                                        <h2>Payment  <b>Info</b></h2>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <table class="table table-dark">
+                                        <thead>
+                                                <tr>
+                                                    <th></th>
+                                                        <th>Movie Id</th>
+                                                        <th>Movie Name</th>
+                                                        <th>Amount per movie</th>
+                                                        <th></th>
+                                                        
+                                                </tr>
+                                        </thead>
+                                        <%
+                                            try {
+                                                Class.forName("com.mysql.jdbc.Driver");
+                                                Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+                                                Statement st = con.createStatement();
+                                                Statement st1 = con.createStatement();
+                                                String sql = "SELECT * FROM now_running";
+                                                ResultSet rs = st.executeQuery(sql);
+                                                while (rs.next()) {
+                                                    String rid = rs.getString("movie_id");
+                                                    String rname = rs.getString("movie_name");
+                                                        String sql1 = "SELECT SUM(amount) FROM booking WHERE mid="+rid;
+                                                        ResultSet rs1 = st1.executeQuery(sql1);
+                                                        while(rs1.next()){
+                                                            String amount = rs1.getString("SUM(amount)");
+                                                    
+                                                %>
+                                        <tbody>
+                                                <tr>
+                                                    <td></td>
+                                                        <td><%=rid%></td>
+                                                        <td><%=rname%></td>
+                                                        <td>₹ <%=amount%></td>
+                                                        
+                                                </tr>
+
+                                        </tbody>
+               <%
+                        }
+}
+                    } catch (Exception e) {
+                        out.println(e);
+                    }
+                %>
+                                </table>
+                                <table class="table table-dark">
+                                    <%
+                                            try {
+                                                Class.forName("com.mysql.jdbc.Driver");
+                                                Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+                                                Statement st = con.createStatement();
+                                                String sql = "SELECT SUM(amount) as sum FROM booking";
+                                                ResultSet rs = st.executeQuery(sql);
+                                                while (rs.next()) {
+                                                    String sum = rs.getString("sum");                      
+                                                %>
+                                        <thead>
+                                                <tr>
+                                                    <th></th>
+                                                        <th>Total amount</th>
+                                                        <th>₹ <%=sum%></th>
+                                                        <th></th>
+                                                        
+                                                </tr>
+                                        </thead>
                                         
+                                        <tbody>
+                                                <tr>
+                                                        <!--<td><%=sum%></td>-->
+                                                        
+                                                </tr>
+
+                                        </tbody>
+               <%
+                        }
+                    } catch (Exception e) {
+                        out.println(e);
+                    }
+                %>
+                                </table>
+                        </div>
+                </div>        
+        </div>
+<!--Payment tab code end-->
+      </div>                               
                                         
       </div>                                       
 

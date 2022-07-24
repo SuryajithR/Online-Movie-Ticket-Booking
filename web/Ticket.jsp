@@ -43,7 +43,7 @@
   box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
   padding:2mm;
   margin: 0 auto;
-  width: 44mm;
+  width: 50mm;
   background: #FFF;
 } 
   
@@ -224,7 +224,8 @@ td{
 
 
         <br><br><br><br><br><br>
-          <form class="signn__form">
+<div class="col-16 col-md-6 col-lg-12">
+<form class="signn__form">
   <div id="invoice-POS">
     
     <center id="top">
@@ -251,13 +252,13 @@ td{
                                         ResultSet rs = st.executeQuery(sql);
                                         
                                         while (rs.next()) {
-                                            String username = rs.getString("uname");
+                                            String mid = rs.getString("mid");
                                             String moviename = rs.getString("mname");
                                             String stime = rs.getString("stime");
                                             String seatno = rs.getString("seatno");
                                             String amount = rs.getString("amount");
                                         %>
-                                            <div id="mid">
+                                            <div id="midd">
                                                 <div class="info">
                                                   <h6>Ticket number : <%= id %></h6>
 
@@ -282,30 +283,33 @@ td{
 							<tr class="tabletitle">
 								<td></td>
 								<td class="Rate"><h2>Amount paid</h2></td>
-								<td class="payment"><h2>$<%= amount %></h2></td>
+								<td class="payment"><h2>₹ <%= amount %></h2></td>
 							</tr>
 
 						</table>
 					</div><!--End Table-->
 
 					<div id="legalcopy">
-						<p class="legal"><strong>Thank you for your Support!</strong> Please visit again 🙂 </p>
+						<p class="legal" align="center"><strong>Thank you for your Support!</strong> Please visit again 🙂 </p>
 					</div>
 
 				</div><!--End InvoiceBot-->
   </div><!--End Invoice-->
-<%
+  </div>
+        <div class="col-12 col-md-8 col-lg-2">
+        <button class="sign__btn" type="submit">&nbsp;&nbsp; Download PDF &nbsp;&nbsp;</button>
+        <a href="details.jsp?id=<%=mid%>" class="sign__btn"><span>Back</span></a>
+        </div>
+        <%
                 }
-con.close();
+            con.close();
             } catch (Exception e) {
                 out.println(e);
             }
         %>
-  </div>
-        <div class="sign__group">
-        <button class="sign__btn" type="submit">Download PDF</button>
-        </div>
 </form>
+</div>
+
 	<!-- Root element of PhotoSwipe. Must have class pswp. -->
 	<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 

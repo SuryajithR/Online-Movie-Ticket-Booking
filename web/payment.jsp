@@ -308,7 +308,7 @@ button:hover{
 							</div>-->
                                                         <div class="sign__group">
                                                             <h4>Total amount</h4>
-								<input type="text" name="seat" value="<%= amount %>" class="signn__input" placeholder="Amount" readonly>
+								<input type="text" name="seat" value="₹ <%= amount %>" class="signn__input" placeholder="Amount" readonly>
 							</div>
 
 

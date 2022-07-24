@@ -176,15 +176,15 @@
                                 <input type="hidden" name="uid" value="${uid}">  <!-- user_id -->
                                                         <div class="sign__group">
                                                                 <span class="sign__text">Your Name</span><br>
-								<input type="text" name="name" id="name" value="${name}" class="signn__input">
+								<input type="text" name="name" id="name" value="${name}" class="signn__input" disabled>
 							</div>
                                                         <div class="sign__group">
                                                                 <span class="sign__text">Selected movie</span><br>
-								<input type="text" name="mname" id="mname" value="<%=mname%>" class="signn__input">
+								<input type="text" name="mname" id="mname" value="<%=mname%>" class="signn__input" disabled>
 							</div>
                                                         <div class="sign__group">
                                                             <span class="sign__text">Select show time</span><br>
-                                                                    <select name="stime" id="stime" class="signn__input">
+                                                                    <select name="stime" id="stime" class="signn__input" required>
                                                                         <option value="<%=show_time_1%>"><%=show_time_1%></option>
                                                                         <option value="<%=show_time_2%>"><%=show_time_2%></option>
                                                                         <option value="<%=show_time_3%>"><%=show_time_3%></option>
@@ -192,7 +192,7 @@
 							</div>
 							<div class="sign__group">
                                                             <span class="sign__text">No of Seats required</span><br>
-								<input type="number" name="seat" id="seat" onkeyup="getOrderTotal()" class="signn__input" placeholder="">
+								<input type="number" name="seat" id="seat" onkeyup="getOrderTotal()" class="signn__input" placeholder="" required>
 							</div>
                                                         <div class="sign__group">
                                                             <span class="sign__text">Total amount</span><br>
