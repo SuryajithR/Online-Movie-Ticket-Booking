@@ -222,83 +222,109 @@ td{
 	</header>
 	<!-- end header -->
 
+        
+        
 
         <br><br><br><br><br><br>
 <div class="col-16 col-md-6 col-lg-12">
 <form class="signn__form">
-  <div id="invoice-POS">
     
-    <center id="top">
-      <div class="logo"></div>
-      <div class="info"> 
-        <h2>PVR Cinemas</h2>
-      </div><!--End Info-->
-    </center><!--End InvoiceTop-->
+    <div class="container">
+  <div class="row">
+    <div class="col">
+                                                <%
+                                                String id=request.getParameter("id");
+                                                try {
+                                                    Class.forName("com.mysql.jdbc.Driver");
+                                                    Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+                                                    Statement st = con.createStatement();
+                                                    String sql = "SELECT * FROM booking where id="+id;
+                                                    ResultSet rs = st.executeQuery(sql);
+
+                                                    while (rs.next()) {
+                                                        String mid = rs.getString("mid");
+                                                        String moviename = rs.getString("mname");
+                                                        String stime = rs.getString("stime");
+                                                        String seatno = rs.getString("seatno");
+                                                        String amount = rs.getString("amount");
+                                                        double am=Double.parseDouble(amount)+15.84;
+                                                    %>
+        <h2 class="sign__text">IMPORTANT INSTRUCTIONS</h2>
+        <span class="sign__text">This transaction can be cancelled up to 4 hour(s) before the show as per cinema cancellation policy.</span><br>
+        <span class="sign__text">The Credit Card and Credit Card Holder must be present at the ticket counter while collecting the ticket(s).GST collected is paid to the department.</span><br>
+        <span class="sign__text">999799 - Other Services n.e.c. PAN Based GSTN. 27AABCB3428P1ZF.</span><br>
+        <span class="sign__text">For Further Assistance:</span><br>
+        <span class="sign__text"><a href="https://www.yedu.tech/">https://www.yedu.tech/</a></span><br><br>
+        <h2 class="sign__text">ORDER SUMMARY</h2>
+        <span class="sign__text">Ticket amount: ₹ <%= amount %></span><br>
+        <span class="sign__text">Quantity: <%= seatno %></span><br>
+        <span class="sign__text">Integrated GST (IGST) @ 18% : ₹ 15.84</span><br>
+        <span class="sign__text">Amount paid: ₹ <%= am %></span><br>
+    </div>
+
+    <div class="col">
+        <h2 class="sign__textt1">Your booking is confirmed!</h2>
+        <div id="invoice-POS">
     
-    <div id="mid">
-      <div class="info" align="center">
-        <h2>Movie Ticket</h2>
-        <img src="img/qrcode.png" alt="qr" width="40" height="40">
-      </div>
-    </div><!--End Invoice Mid-->
-    
-                            <%
-                                    String id=request.getParameter("id");
-                                    try {
-                                        Class.forName("com.mysql.jdbc.Driver");
-                                        Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
-                                        Statement st = con.createStatement();
-                                        String sql = "SELECT * FROM booking where id="+id;
-                                        ResultSet rs = st.executeQuery(sql);
-                                        
-                                        while (rs.next()) {
-                                            String mid = rs.getString("mid");
-                                            String moviename = rs.getString("mname");
-                                            String stime = rs.getString("stime");
-                                            String seatno = rs.getString("seatno");
-                                            String amount = rs.getString("amount");
-                                        %>
-                                            <div id="midd">
-                                                <div class="info">
-                                                  <h6>Ticket number : <%= id %></h6>
+                <center id="top">
+                  <div class="logo"></div>
+                  <div class="info"> 
+                    <h2>PVR Cinemas</h2>
+                  </div><!--End Info-->
+                </center><!--End InvoiceTop-->
 
-                                                </div>
-    
-    <div id="bot">
+                <div id="mid">
+                  <div class="info" align="center">
+                    <h2>Movie Ticket</h2>
+                    <img src="img/qrcode.png" alt="qr" width="40" height="40">
+                  </div>
+                </div><!--End Invoice Mid-->
+                                                        <div id="midd">
+                                                            <div class="info">
+                                                              <h6>Ticket number : <%= id %></h6>
 
-					<div id="table">
-						<table>
-							<tr class="tabletitle">
-								<td class="item"><h2>Movie name</h2></td>
-                                                                <td class="item"><h2>Show time</h2></td>
-								<td class="Hours"><h2>No.of seats</h2></td>
-							</tr>
+                                                            </div>
 
-							<tr class="service">
-								<td class="tableitem"><p class="itemtext"><%= moviename %></p></td>
-                                                                <td class="tableitem"><p class="itemtext"><%= stime %></p></td>
-								<td class="tableitem"><p class="itemtext"><%= seatno %></p></td>
-							</tr>
+                <div id="bot">
 
-							<tr class="tabletitle">
-								<td></td>
-								<td class="Rate"><h2>Amount paid</h2></td>
-								<td class="payment"><h2>₹ <%= amount %></h2></td>
-							</tr>
+                                                    <div id="table">
+                                                            <table>
+                                                                    <tr class="tabletitle">
+                                                                            <td class="item"><h2>Movie name</h2></td>
+                                                                            <td class="item"><h2>Show time</h2></td>
+                                                                            <td class="Hours"><h2>No.of seats</h2></td>
+                                                                    </tr>
 
-						</table>
-					</div><!--End Table-->
+                                                                    <tr class="service">
+                                                                            <td class="tableitem"><p class="itemtext"><%= moviename %></p></td>
+                                                                            <td class="tableitem"><p class="itemtext"><%= stime %></p></td>
+                                                                            <td class="tableitem"><p class="itemtext"><%= seatno %></p></td>
+                                                                    </tr>
 
-					<div id="legalcopy">
-						<p class="legal" align="center"><strong>Thank you for your Support!</strong> Please visit again 🙂 </p>
-					</div>
+                                                                    <tr class="tabletitle">
+                                                                            <td></td>
+                                                                            <td class="Rate"><h2></h2></td>
+                                                                            <td class="item "><h2>Screen 1</h2></td>
+                                                                    </tr>
 
-				</div><!--End InvoiceBot-->
-  </div><!--End Invoice-->
+                                                            </table>
+                                                    </div><!--End Table-->
+
+                                                    <div id="legalcopy">
+                                                            <p class="legal" align="center"><strong>Thank you for your Support!</strong> Please visit again 🙂 </p>
+                                                    </div>
+
+                                            </div><!--End InvoiceBot-->
+              </div><!--End Invoice-->
+        </div>
+    </div>
   </div>
-        <div class="col-12 col-md-8 col-lg-2">
-        <button class="sign__btn" type="submit">&nbsp;&nbsp; Download PDF &nbsp;&nbsp;</button>
-        <a href="details.jsp?id=<%=mid%>" class="sign__btn"><span>Back</span></a>
+    </div>
+        <div class="sign__textt2">
+        <button class="sign__btn" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Download PDF &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        </div>
+        <div class="sign__textt3">
+        <a href="details.jsp?id=<%=mid%>" class="sign__btn"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Back &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></a>
         </div>
         <%
                 }

@@ -49,6 +49,18 @@ function deleteRecord(id){
 
     }
 }
+
+
+function reset(id){
+    var doIt=confirm('Are you sure?');
+  if(doIt){
+   var f=document.form;
+    f.submit();
+    }
+  else{
+
+    }
+}
 </script>
 <script type="text/javascript">
     $(function cale () {
@@ -456,16 +468,21 @@ table.table .avatar {
                             Statement st = con.createStatement();
                             Statement st1 = con.createStatement();
                             Statement st2 = con.createStatement();
+                            Statement st3 = con.createStatement();
                             String sql = "SELECT COUNT(*) FROM booking";
                             String sql1 = "SELECT COUNT(*) FROM users";
                             String sql2 = "SELECT COUNT(*) FROM now_running";
+                            String sql3 = "SELECT COUNT(*) FROM feedback";
                             ResultSet rs = st.executeQuery(sql);
                             ResultSet rs1 = st1.executeQuery(sql1);
                             ResultSet rs2 = st2.executeQuery(sql2);
+                            ResultSet rs3 = st3.executeQuery(sql3);
                             if(rs1.next()){
                                 int users=Integer.parseInt(rs1.getString("COUNT(*)"));
                             if(rs2.next()){
                                 int run=Integer.parseInt(rs2.getString("COUNT(*)"));
+                            if(rs3.next()){
+                                int rate=Integer.parseInt(rs3.getString("COUNT(*)"));
                             while (rs.next()) {
                                 String c = rs.getString("COUNT(*)");
                                 int book = Integer.parseInt(c);
@@ -483,8 +500,13 @@ table.table .avatar {
                     <div class="progress" style="height: 30px;">
                     <div class="progress-bar" role="progressbar" style="width: <%=book%>%;" aria-valuenow="<%=book%>" aria-valuemin="0" aria-valuemax="100"><%=book%></div>
                     </div>
+                    <h2>User Ratings</h2>        
+                    <div class="progress" style="height: 30px;">
+                    <div class="progress-bar" role="progressbar" style="width: <%=rate%>%;" aria-valuenow="<%=rate%>" aria-valuemin="0" aria-valuemax="100"><%=rate%></div>
+                    </div>
 
                         <%
+                            }
                             }
                             }
                             }
@@ -690,7 +712,7 @@ table.table .avatar {
                                 <div class="table-title">
                                         <div class="row">
                                                 <div class="col-sm-6">
-                                                    <h2>User <b>Feedback</b></h2>
+                                                    <h2>User <b>Feedbacks</b></h2>
                                                 </div>
                                                 <div class="col-sm-6">
                                                 </div>
@@ -702,7 +724,9 @@ table.table .avatar {
                                                 <tr>
                                                         <th>Id</th>
                                                         <th>Name</th>
+                                                        <th>Movie</th>
                                                         <th>Feedback</th>
+                                                        <th>Star</th>
                                                 </tr>
                                         </thead>
                                         <%
@@ -715,13 +739,17 @@ table.table .avatar {
                                                 while (rs.next()) {
                                                     String id = rs.getString("fid");    
                                                     String name = rs.getString("uname");
+                                                    String mname = rs.getString("movie");
                                                     String fback = rs.getString("fback");
+                                                    String rating = rs.getString("star");
                                                 %>
                                         <tbody>
                                                 <tr>
                                                         <td><%=id%></td>
                                                         <td><%=name%></td>
+                                                        <td><%=mname%></td>
                                                         <td><%=fback%></td>
+                                                        <td><%=rating%></td>
                                                         <td>
                
                                                                 <!--<a href="deleteMovie.jsp?id=<%=id%>" onclick="deleteRecord(<%=rs.getString(1)%>);" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>-->
@@ -729,6 +757,58 @@ table.table .avatar {
                                                 </tr>
                                                         <%
                         }
+                    } catch (Exception e) {
+                        out.println(e);
+                    }
+                %>
+                                        </tbody>
+                                </table>
+
+                                <div class="clearfix">
+                                </div>
+                        </div>
+                                        <div class="table-wrapper">
+                                <div class="table-title">
+                                        <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h2>User <b>Ratings</b> for movies</h2>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <table class="table table-dark">
+                                        <thead>
+                                                <tr>
+                                                        <th>Movie name</th>
+                                                        <th>Overall Rating</th>
+                                                </tr>
+                                        </thead>
+                                        <%
+                                            try {
+                                                Class.forName("com.mysql.jdbc.Driver");
+                                                Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+                                                Statement st = con.createStatement();
+                                                Statement st1 = con.createStatement();
+                                                String sql1 = "SELECT movie_id,movie_name from now_running";
+                                                ResultSet rs1 = st1.executeQuery(sql1);
+                                                while (rs1.next()) {
+                                                    String moid = rs1.getString("movie_id");
+                                                    String moname = rs1.getString("movie_name");
+                                                String sql = "SELECT ROUND(AVG(star), 1)*2 AS avg FROM feedback WHERE mid="+moid;
+                                                ResultSet rs = st.executeQuery(sql);
+                                                while (rs.next()) {
+                                                    String rating = rs.getString("avg");
+                                                %>
+                                        <tbody>
+                                                <tr>
+                                                    <td><%=moname%></td>
+                                                        <td><%=rating%></td>
+                                                </tr>
+                                                        <%
+                        }
+}
                     } catch (Exception e) {
                         out.println(e);
                     }
@@ -796,6 +876,8 @@ table.table .avatar {
                                                         <td><%=mname%></td>
                                                         <td><%=seat%></td>
                                                         <td>250</td>
+                                                        <td>
+                                                            <a href="reset.jsp?id=<%=moid%>" onclick="reset(<%=rs.getString(1)%>);" class="btn btn-warning"><span>Reset</span></a></td>
                                                         
                                                 </tr>
 
@@ -893,14 +975,13 @@ table.table .avatar {
                                                     <th></th>
                                                         <th>Total amount</th>
                                                         <th>₹ <%=sum%></th>
-                                                        <th></th>
+                                                        <th><a id="save" href="" class="btn btn-warning">Download file</a></th>
                                                         
                                                 </tr>
                                         </thead>
                                         
                                         <tbody>
                                                 <tr>
-                                                        <!--<td><%=sum%></td>-->
                                                         
                                                 </tr>
 
@@ -925,7 +1006,25 @@ table.table .avatar {
   </div><!-- col-md-8 end -->
 </div>
 
-
+<script>
+userDetails='';
+$('table tbody tr').each(function(){
+  var detail='(';
+  $(this).find('td').each(function(){
+  	detail+=$(this).html()+',';
+  });
+  detail=detail.substring(0,detail.length-1);
+  detail+=')';
+ userDetails+=detail+"\r\n";
+});
+var a=document.getElementById('save');
+a.onclick=function(){
+    var a = document.getElementById("save");
+    var file = new Blob([userDetails], {type: 'text/plain'});
+    a.href = URL.createObjectURL(file);
+    a.download = "data.txt";
+}
+</script>
 
 
 </body>

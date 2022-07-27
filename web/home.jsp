@@ -187,7 +187,7 @@
 									<span class="card__category">
 										<a href="#"><%=genre%></a>
 									</span>
-									<span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
+									<!--<span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>-->
                                                                         
 								</div>
 							</div>
@@ -206,44 +206,6 @@
 		</div>
 	</section>
 	<!-- end home -->
-        
-        <!--Feedback form-->
-        	<section class="section details">
-		<!-- details background -->
-		<div class="details__bg" data-bg="img/home/home__bg.jpg"></div>
-		<!-- end details background -->
-
-		<!-- details content -->
-		<div class="container">
-			<div class="row">
-                                                  
-                            
-                            <form method="post" action="feedback.jsp" class="signn__form">
-                            <div class="col-15">
-                                <h1 class="home__title"><b>SEND SOME</b> FEEDBACK</h1><br><br>
-
-				</div>
-                                                        <div class="sign__group">
-								<input type="text" name="name" id="name" class="signn__input" placeholder="Your name" required>
-							</div>
-							<div class="sign__group">
-								<input type="text" name="fback" id="name" class="signn__input" placeholder="Add your feedback" required>
-							</div>
-
-							
-							<button class="sign__btn" type="submit">Send feedback</button>
-
-						</form>
-                            
-                            
-                            
-                            
-                            
-                            
-			</div>
-		</div>
-		<!-- end details content -->
-	</section>
 
 	<!-- footer -->
 	<footer class="footer">

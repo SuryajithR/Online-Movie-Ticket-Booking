@@ -3387,6 +3387,25 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   color: rgba(255,255,255,0.5);
   font-family: 'Open Sans', sans-serif;
 }
+.sign__textt1 {
+  margin-top: 15px;
+  margin-left: 155px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  font-family: 'Open Sans', sans-serif;
+}
+.sign__textt2 {
+  margin-top: 15px;
+  margin-left: 525px;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+}
+.sign__textt3 {
+  margin-top: 15px;
+  margin-right: 950px;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+}
 .sign__text a {
   position: relative;
   background-image: -webkit-linear-gradient(0deg, #ff55a5 0%, #ff5860 100%);

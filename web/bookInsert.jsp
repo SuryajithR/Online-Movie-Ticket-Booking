@@ -24,6 +24,7 @@
             int seatno1= Integer.parseInt(request.getParameter("seat"));
             String stime =request.getParameter("stime");
             String amount =request.getParameter("Amount");
+//            double am=Double.parseDouble(amount)+15.84;
             
             try{
             Class.forName("com.mysql.jdbc.Driver");

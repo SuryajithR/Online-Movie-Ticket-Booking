@@ -38,7 +38,47 @@
 	<meta name="keywords" content="">
 	<meta name="author" content="Dmitry Volkov">
 	<title>PVR Cinemas</title>
-
+        <style>
+            *{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+        </style>
 </head>
 <body class="body">
 	
@@ -157,11 +197,19 @@
                                                 Class.forName("com.mysql.jdbc.Driver");
                                                 Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
                                                 Statement st = con.createStatement();
+                                                Statement st1 = con.createStatement();
                                                 String sql = "SELECT * FROM now_running where movie_id="+id;
+                                                String sql1 = "SELECT ROUND(AVG(star), 1)*2 AS avg FROM feedback WHERE mid="+id;
                                                 ResultSet rs = st.executeQuery(sql);
+                                                ResultSet rs1 = st1.executeQuery(sql1);
+                                                if (rs1.next()){
+                                                   String rating = rs1.getString("avg");
+                                                   if (rating=="null"){
+                                                        rating = "0";
+                                                 }
                                                 while (rs.next()) {
                                                     String mname = rs.getString("movie_name");
-//                                                  String desc = rs.getText("movie_desc");
+                                                    String desc = rs.getString("movie_desc");
                                                     String genre = rs.getString("genre");
                                                     String filename = rs.getString("file_name");
                                                 
@@ -188,7 +236,7 @@
 							<div class="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-9">
 								<div class="card__content">
 									<div class="card__wrap">
-										<span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
+										<span class="card__rate"><i class="icon ion-ios-star"><%=rating%></i></span>
 
 										<ul class="card__list">
 											<li>HD</li>
@@ -197,13 +245,12 @@
 									</div>
 
 									<ul class="card__meta">
-										<li><span>Genre:</span> <a href="#">Action</a>
-										<a href="#"><%=genre%></a></li>
+										<li><span>Genre:</span> <a href="#"><%=genre%></a>
 										
                                                                                 
 									</ul>
                                                                         <div class="card__description card__description--details">
-                                                                            A film – also called a movie, motion picture, moving picture, picture or photoplay – is a work of visual art that simulates experiences and otherwise communicates ideas, stories, perceptions, feelings, beauty, or atmosphere through the use of moving images. These images are generally accompanied by sound and, more rarely, other sensory stimulations.[1] The word "cinema", short for cinematography, is often used to refer to filmmaking and the film industry, and to the art form that is the result of it.
+                                                                            <%=desc%>
 									</div>
 
 									
@@ -237,40 +284,98 @@
 						
 					</div>
 				</div>
-        <%
-                }
-            } catch (Exception e) {
-                out.println(e);
-            }
-        %>
+			</div>
+		</div>
+                        
+		<!-- end details content -->
+	</section>
+	<!-- end details -->
+        <!--Feedback form-->
+        	<section class="section details">
+		<!-- details background -->
+		<div class="details__bg" data-bg="img/home/home__bg.jpg"></div>
+		<!-- end details background -->
+
+		<!-- details content -->
+		<div class="container">
+			<div class="row">
+                            <form method="post" action="feedback.jsp" class="signn__form">
+                            <div class="col-15">
+                                <h1 class="home__title"><b>SEND SOME</b> FEEDBACK</h1><br><br>
+
+				</div>
+                                                                <input type="hidden" name="name" id="name" value="${name}" class="signn__input">
+                                                                <input type="hidden" name="mid" id="mid" value="<%=id%>" class="signn__input">
+                                                                <input type="hidden" name="mname" id="mname" value="<%=mname%>" class="signn__input">
+							<div class="sign__group">
+								<input type="text" name="fback" id="name" class="signn__input" placeholder="Add your comment" required>
+							</div>
+                                                        
+                                                          <div class="rate"radio button >
+                                                            <input type="radio" id="star5" name="rate" value="5" />
+                                                            <label for="star5" title="text">5 stars</label>
+                                                            <input type="radio" id="star4" name="rate" value="4" />
+                                                            <label for="star4" title="text">4 stars</label>
+                                                            <input type="radio" id="star3" name="rate" value="3" />
+                                                            <label for="star3" title="text">3 stars</label>
+                                                            <input type="radio" id="star2" name="rate" value="2" />
+                                                            <label for="star2" title="text">2 stars</label>
+                                                            <input type="radio" id="star1" name="rate" value="1" />
+                                                            <label for="star1" title="text">1 star</label>
+                                                          </div>
+                                                        <%
+                                                           }
+                                                                }
+                                                            } catch (Exception e) {
+                                                                out.println(e);
+                                                            }
+                                                        %>
+							
+							<button class="sign__btn" type="submit">Send feedback</button>
+                        </form>
+                            
 			</div>
 		</div>
 		<!-- end details content -->
 	</section>
-	<!-- end details -->
-
-
+		<div class="container">
+			<div class="row">
+                            <form class="signn__form">
+                            <div class="col-15">
+                                <h1 class="home__title">Comments</h1><br><br>
+				</div>
+                                                <%
+                                                 try {
+                                                Class.forName("com.mysql.jdbc.Driver");
+                                                Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+                                                Statement st = con.createStatement();
+                                                String sql = "SELECT * FROM feedback where mid="+id;
+                                                ResultSet rs = st.executeQuery(sql);
+                                                while (rs.next()) {
+                                                    String name = rs.getString("uname");
+                                                    String fback = rs.getString("fback");
+                                                
+                                                %>
+                                                        <div class="sign__group">
+                                                            <span class="sign__text">Name</span><br>
+                                                            <input type="text" name="name" id="name" value="<%=name%>" class="signn__input" disabled>
+                                                            <span class="sign__text">Comment</span><br>
+                                                            <input type="text" name="name" id="name" value="<%=fback%>" class="signn__input" disabled>
+                                                        </div><br>
+            <%
+                }
+            } catch (Exception e) {
+                out.println(e);
+            }
+            %>
+                         </form>                                       
+			</div>
+		</div>
 	<!-- footer -->
 	<footer class="footer">
 		<div class="container">
 			<div class="row">
-				<!-- footer list -->
-			
-				<!-- end footer list -->
 
-				<!-- footer list -->
-				
-				<!-- end footer list -->
-
-				<!-- footer list -->
-				
-				<!-- end footer list -->
-
-				<!-- footer list -->
-				
-				<!-- end footer list -->
-
-				<!-- footer copyright -->
 				<div class="col-12">
 					
 				</div>

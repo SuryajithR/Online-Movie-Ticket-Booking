@@ -292,6 +292,7 @@ button:hover{
                                             String moviename = rs.getString("mname");
                                             String seatno = rs.getString("seatno");
                                             String amount = rs.getString("amount");
+                                            double am=Double.parseDouble(amount)+15.84;
                                         %>
                             
                             
@@ -303,12 +304,18 @@ button:hover{
                                                         <div class="sign__group">
 								<input type="text" name="seat" value="<%=moviename%>" class="signn__input" placeholder="Movie Selected" readonly>
 							</div>
+-->                                                     
                                                         <div class="sign__group">
-								<input type="text" name="seat" value="<%= seatno %>" class="signn__input" placeholder="No. of seats required" readonly>
-							</div>-->
+                                                            <h4>Base amount</h4>
+								<input type="text" name="seat" value="₹ <%= amount %>" class="signn__input" placeholder="Amount" readonly>
+							</div>
+                                                        <div class="sign__group">
+                                                            <h4>Integrated GST (IGST) @ 18%</h4>
+								<input type="text" name="seat" value="₹ 15.84" class="signn__input" placeholder="No. of seats required" readonly>
+							</div>
                                                         <div class="sign__group">
                                                             <h4>Total amount</h4>
-								<input type="text" name="seat" value="₹ <%= amount %>" class="signn__input" placeholder="Amount" readonly>
+								<input type="text" name="seat" value="₹ <%= am %>" class="signn__input" placeholder="No. of seats required" readonly>
 							</div>
 
 

@@ -10,7 +10,10 @@ pageEncoding="ISO-8859-1"%>
 
 <%
 String name = request.getParameter("name");
+String mid = request.getParameter("mid");
+String movie = request.getParameter("mname");
 String fback = request.getParameter("fback");
+String rating = request.getParameter("rate");
 
 Connection con = null;
 PreparedStatement ps = null;
@@ -18,10 +21,13 @@ try
 {
 Class.forName("com.mysql.jdbc.Driver");
 con = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie", "root", "root");
-String sql="insert into feedback (`uname`,`fback`)values(?,?) ";
+String sql="insert into feedback (`uname`,`mid`,`movie`,`fback`,`star`)values(?,?,?,?,?) ";
 ps = con.prepareStatement(sql);
 ps.setString(1, name);
-ps.setString(2, fback);
+ps.setString(2, mid);
+ps.setString(3, movie);
+ps.setString(4, fback);
+ps.setString(5, rating);
 
 int i = ps.executeUpdate();
 if(i > 0)
