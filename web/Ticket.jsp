@@ -232,23 +232,23 @@ td{
     <div class="container">
   <div class="row">
     <div class="col">
-                                                <%
-                                                String id=request.getParameter("id");
-                                                try {
-                                                    Class.forName("com.mysql.jdbc.Driver");
-                                                    Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
-                                                    Statement st = con.createStatement();
-                                                    String sql = "SELECT * FROM booking where id="+id;
-                                                    ResultSet rs = st.executeQuery(sql);
+        <%
+        String id=request.getParameter("id");
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+            Statement st = con.createStatement();
+            String sql = "SELECT * FROM booking where id="+id;
+            ResultSet rs = st.executeQuery(sql);
 
-                                                    while (rs.next()) {
-                                                        String mid = rs.getString("mid");
-                                                        String moviename = rs.getString("mname");
-                                                        String stime = rs.getString("stime");
-                                                        String seatno = rs.getString("seatno");
-                                                        String amount = rs.getString("amount");
-                                                        double am=Double.parseDouble(amount)+15.84;
-                                                    %>
+            while (rs.next()) {
+                String mid = rs.getString("mid");
+                String moviename = rs.getString("mname");
+                String stime = rs.getString("stime");
+                String seatno = rs.getString("seatno");
+                String amount = rs.getString("amount");
+                double am=Double.parseDouble(amount)+15.84;
+        %>
         <h2 class="sign__text">IMPORTANT INSTRUCTIONS</h2>
         <span class="sign__text">This transaction can be cancelled up to 4 hour(s) before the show as per cinema cancellation policy.</span><br>
         <span class="sign__text">The Credit Card and Credit Card Holder must be present at the ticket counter while collecting the ticket(s).GST collected is paid to the department.</span><br>
@@ -279,13 +279,13 @@ td{
                     <img src="img/qrcode.png" alt="qr" width="40" height="40">
                   </div>
                 </div><!--End Invoice Mid-->
-                                                        <div id="midd">
-                                                            <div class="info">
-                                                              <h6>Ticket number : <%= id %></h6>
+                                            <div id="midd">
+                                                <div class="info">
+                                                  <h6>Ticket number : <%= id %></h6>
 
-                                                            </div>
+                                                   </div>
 
-                <div id="bot">
+                                                    <div id="bot">
 
                                                     <div id="table">
                                                             <table>
@@ -321,10 +321,10 @@ td{
   </div>
     </div>
         <div class="sign__textt2">
-        <button class="sign__btn" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Download PDF &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        <button class="form__btn" type="submit">Download</button>
         </div>
         <div class="sign__textt3">
-        <a href="details.jsp?id=<%=mid%>" class="sign__btn"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Back &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></a>
+            <a href="details.jsp?id=<%=mid%>" class="sign__text"><span><i class="icon ion-md-arrow-round-back">&nbsp;</i>Back to details</span></a>
         </div>
         <%
                 }
@@ -402,6 +402,7 @@ td{
 	<script src="js/photoswipe.min.js"></script>
 	<script src="js/photoswipe-ui-default.min.js"></script>
 	<script src="js/main.js"></script>
+
 </body>
 
 </html>

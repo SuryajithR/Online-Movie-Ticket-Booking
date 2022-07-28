@@ -38,8 +38,8 @@
 	<meta name="keywords" content="">
 	<meta name="author" content="Dmitry Volkov">
 	<title>PVR Cinemas</title>
-        <style>
-            *{
+<style>
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -66,7 +66,7 @@ h4{
 .name{
   padding: 14px 10px 14px 50px;
   width: 100%;
-  background-color: #fcfcfc;
+  background-color: #808080;
   border: 1px solid #000000;
   outline: none;
   letter-spacing: 1px;
@@ -137,7 +137,7 @@ h4{
   border-bottom-right-radius: 3px;
 }
 .radio:checked + label{
-  background-color: #7ed321;
+  background-color: #808080;
   color: #fff;
   transition: 0.5s;
 }
@@ -155,7 +155,7 @@ h4{
   transition: all 0.2s ease;
 }
 .input-box select:focus{
-  background-color: #7ed321;
+  background-color: #808080;
   color: #fff;
   text-align: center;
 }

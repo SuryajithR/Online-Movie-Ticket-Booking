@@ -2506,20 +2506,24 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   position: absolute;
   top: 0;
   left: 0;
-  width: 40px;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-}
-.comments__name {
-  display: block;
   font-size: 16px;
   color: #fff;
   line-height: 20px;
   font-weight: 400;
 }
+.comments__name {
+  position: absolute;
+  top: 10;
+  left: 0;
+  font-size: 16px;
+  color: rgba(255,255,255,0.5);
+  line-height: 20px;
+  font-weight: 300;
+  font-family: 'Open Sans', sans-serif;
+}
 .comments__time {
   display: block;
-  font-size: 13px;
+  font-size: 15px;
   color: rgba(255,255,255,0.5);
   line-height: 20px;
   font-weight: 300;

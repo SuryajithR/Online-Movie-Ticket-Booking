@@ -23,6 +23,7 @@ if(mid != null)
 {
 Connection con = null;
 PreparedStatement ps = null;
+PreparedStatement ps1 = null;
 try
 {
 Class.forName("com.mysql.jdbc.Driver");
@@ -38,7 +39,15 @@ ps.setString(6, show_time1);
 ps.setString(7, show_time2);
 ps.setString(8, show_time3);
 
+String sql1="Update now_running set movie_name=?,movie_desc=?,genre=? where movie_id="+mid;
+ps1 = con.prepareStatement(sql1);
+ps1.setString(1, movie_name);
+ps1.setString(2, movie_desc);
+ps1.setString(3, genre);
+int i1 = ps1.executeUpdate();
+
 int i = ps.executeUpdate();
+
 if("false".equals(now)){
       Statement st=con.createStatement();
       st.executeUpdate("Delete from now_running where movie_id="+mid );

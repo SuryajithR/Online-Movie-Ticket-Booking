@@ -29,12 +29,11 @@
 
 	<meta name="description" content="">
 	<meta name="keywords" content="">
-	<meta name="author" content="Dmitry Volkov">
 	<title>PVR Cinemas</title>
 
 </head>
 <body class="body">
-    <input type="hidden" id="status" value="<%= request.getAttribute("status") %>">
+    <input type="hidden" id="status1" value="<%= request.getAttribute("status1") %>">
 	<div class="sign section--bg" data-bg="img/section/section.jpg">
 		<div class="container">
 			<div class="row">
@@ -95,12 +94,14 @@
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<link rel="stylesheet" href="alert/dist/sweetalert.css">
         
+
 <script type="text/javascript">
-    var status = document.getElementById("status").value;
-    if(status === "true") {
-        swal("Success", "Account created successfully", "success");
+    var status = document.getElementById("status1").value;
+    if(status === "failedem") {
+        swal("Email", "already registered", "error");
     }
 </script>
+
 </body>
 
 </html>

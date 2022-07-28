@@ -290,87 +290,153 @@
 		<!-- end details content -->
 	</section>
 	<!-- end details -->
-        <!--Feedback form-->
+        
+<!--Feedback form-->
         	<section class="section details">
 		<!-- details background -->
 		<div class="details__bg" data-bg="img/home/home__bg.jpg"></div>
 		<!-- end details background -->
-
-		<!-- details content -->
 		<div class="container">
 			<div class="row">
-                            <form method="post" action="feedback.jsp" class="signn__form">
-                            <div class="col-15">
-                                <h1 class="home__title"><b>SEND SOME</b> FEEDBACK</h1><br><br>
-
-				</div>
-                                                                <input type="hidden" name="name" id="name" value="${name}" class="signn__input">
-                                                                <input type="hidden" name="mid" id="mid" value="<%=id%>" class="signn__input">
-                                                                <input type="hidden" name="mname" id="mname" value="<%=mname%>" class="signn__input">
-							<div class="sign__group">
-								<input type="text" name="fback" id="name" class="signn__input" placeholder="Add your comment" required>
-							</div>
-                                                        
-                                                          <div class="rate"radio button >
-                                                            <input type="radio" id="star5" name="rate" value="5" />
-                                                            <label for="star5" title="text">5 stars</label>
-                                                            <input type="radio" id="star4" name="rate" value="4" />
-                                                            <label for="star4" title="text">4 stars</label>
-                                                            <input type="radio" id="star3" name="rate" value="3" />
-                                                            <label for="star3" title="text">3 stars</label>
-                                                            <input type="radio" id="star2" name="rate" value="2" />
-                                                            <label for="star2" title="text">2 stars</label>
-                                                            <input type="radio" id="star1" name="rate" value="1" />
-                                                            <label for="star1" title="text">1 star</label>
-                                                          </div>
-                                                        <%
-                                                           }
-                                                                }
-                                                            } catch (Exception e) {
-                                                                out.println(e);
-                                                            }
-                                                        %>
-							
-							<button class="sign__btn" type="submit">Send feedback</button>
-                        </form>
-                            
+                            <div class="col-12 col-lg-8 col-xl-8">
+                              <div class="tab-content" id="myTabContent">
+                                <form method="post" action="feedback.jsp" class="form">
+                                        <input type="hidden" name="name" id="name" value="${name}" class="signn__input">
+                                        <input type="hidden" name="mid" id="mid" value="<%=id%>" class="signn__input">
+                                        <input type="hidden" name="mname" id="mname" value="<%=mname%>" class="signn__input">
+                                        <textarea id="text" name="fback" class="form__textarea" placeholder="Add comment"></textarea>
+                                        <div class="rate"radio button >
+                                         <input type="radio" id="star5" name="rate" value="5" />
+                                         <label for="star5" title="text">5 stars</label>
+                                         <input type="radio" id="star4" name="rate" value="4" />
+                                         <label for="star4" title="text">4 stars</label>
+                                         <input type="radio" id="star3" name="rate" value="3" />
+                                         <label for="star3" title="text">3 stars</label>
+                                         <input type="radio" id="star2" name="rate" value="2" />
+                                         <label for="star2" title="text">2 stars</label>
+                                         <input type="radio" id="star1" name="rate" value="1" />
+                                         <label for="star1" title="text">1 star</label>
+                                        </div><br><br><br>
+                                        <button class="form__btn" type="submit">Send</button>
+                                        <%
+                                           }
+                                                }
+                                            } catch (Exception e) {
+                                                out.println(e);
+                                            }
+                                        %>
+                                </form>
 			</div>
+                </div></div>
 		</div>
-		<!-- end details content -->
+<!-- end add feedback -->
 	</section>
-		<div class="container">
+                                                            
+<!--comment start-->
+                <div class="container">
 			<div class="row">
-                            <form class="signn__form">
-                            <div class="col-15">
-                                <h1 class="home__title">Comments</h1><br><br>
-				</div>
-                                                <%
-                                                 try {
+				<div class="col-6 col-lg-8 col-xl-8">
+					<!-- content tabs -->
+					<div class="tab-content" id="myTabContent">
+         						<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
+							<div class="row">
+								<!-- comments -->
+								<div class="col-12">
+									<div class="comments">
+										<ul class="comments__list">
+											<li class="comments__item">
+                                                                                            <%
+                                                                                             try {
+                                                                                            Class.forName("com.mysql.jdbc.Driver");
+                                                                                            Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
+                                                                                            Statement st = con.createStatement();
+                                                                                            String sql = "SELECT * FROM feedback where mid="+id;
+                                                                                            ResultSet rs = st.executeQuery(sql);
+                                                                                            while (rs.next()) {
+                                                                                                String name = rs.getString("uname");
+                                                                                                String fback = rs.getString("fback");
+
+                                                                                            %>
+												<div class="comments__actions">
+													<div class="comments__rate">
+                                                                                                        </div>
+													<!--<img class="comments__avatar" src="img/user.png" alt="">-->
+                                                                                                        <span class="comments__name"><%=name%></span>
+												</div>
+												<p class="comments__text"><%=fback%>
+												<div class="comments__actions">
+													<div class="comments__rate">
+													</div>
+													<button type="button"><i class="icon ion-md-trash"></i>Delete</button>
+												</div>
+											</li>
+										</ul>
+                                                                                                 <br>
+                                                                                <%
+                                                                                    }
+                                                                                } catch (Exception e) {
+                                                                                    out.println(e);
+                                                                                }
+                                                                                %>
+
+									</div>
+								</div>
+								<!-- end comments -->
+							</div>
+						</div>
+                                        </div>
+                                </div>
+				<!-- sidebar -->
+				<div class="col-12 col-lg-4 col-xl-4">
+					<div class="row">
+						<!-- section title -->
+						<div class="col-12">
+							<h2 class="section__title section__title--sidebar">You may also like...</h2>
+						</div>
+						<!-- end section title -->
+                                             <%
+                                            try {
                                                 Class.forName("com.mysql.jdbc.Driver");
                                                 Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
                                                 Statement st = con.createStatement();
-                                                String sql = "SELECT * FROM feedback where mid="+id;
+                                                String sql = "SELECT * FROM now_running";
                                                 ResultSet rs = st.executeQuery(sql);
                                                 while (rs.next()) {
-                                                    String name = rs.getString("uname");
-                                                    String fback = rs.getString("fback");
+                                                    String mname = rs.getString("movie_name");
+                                                    String genre = rs.getString("genre");
+                                                    String filename = rs.getString("file_name");
                                                 
-                                                %>
-                                                        <div class="sign__group">
-                                                            <span class="sign__text">Name</span><br>
-                                                            <input type="text" name="name" id="name" value="<%=name%>" class="signn__input" disabled>
-                                                            <span class="sign__text">Comment</span><br>
-                                                            <input type="text" name="name" id="name" value="<%=fback%>" class="signn__input" disabled>
-                                                        </div><br>
-            <%
-                }
-            } catch (Exception e) {
-                out.println(e);
-            }
-            %>
-                         </form>                                       
-			</div>
-		</div>
+                                        %>
+						<!-- card -->
+						<div class="col-6 col-sm-4 col-lg-6">
+							<div class="card">
+								<div class="card__cover">
+									<img src="<%=filename%>" width="180" height="260"/>
+									<a href="#" class="card__play">
+										<i class="icon ion-ios-play"></i>
+									</a>
+								</div>
+								<div class="card__content">
+									<h3 class="card__title"><a href="#"><%=mname%></a></h3>
+									<span class="card__category">
+										<a href="#"><%=genre%></a>
+									</span>
+								</div>
+							</div>
+						</div>
+						<!-- end card -->
+                                        <%
+                                           }
+                                            } catch (Exception e) {
+                                                out.println(e);
+                                            }
+                                        %>
+					</div>
+				</div>
+				<!-- end sidebar -->                                                                              
+</div></div>
+                                                                                
+                         
 	<!-- footer -->
 	<footer class="footer">
 		<div class="container">

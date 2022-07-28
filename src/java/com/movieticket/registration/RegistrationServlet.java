@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,13 +46,24 @@ public class RegistrationServlet extends HttpServlet {
                 pst.setString(1, uname);
                 pst.setString(2, upwd);
                 pst.setString(3, uemail);
-                pst.setString(4, umobile);  
+                pst.setString(4, umobile);
                 
+                PreparedStatement pst1 = con.prepareStatement("select uemail from users");
+                ResultSet rs = pst1.executeQuery();
+                if(rs.next()){
+                    String email=rs.getString("uemail");
+                    if(email.equals(uemail)){
+                        request.setAttribute("status1", "failedem");
+                        dispatcher = request.getRequestDispatcher("signup.jsp");
+                    }
+                else{
                 int rowCount = pst.executeUpdate();
                 
                 if(rowCount >0){
-                    request.setAttribute("status", "success");
+                    request.setAttribute("status2", "success");
                     dispatcher = request.getRequestDispatcher("signin.jsp");
+                }
+                }
                 }
                 dispatcher.forward(request, response);
             } catch (Exception e){

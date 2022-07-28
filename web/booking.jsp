@@ -176,7 +176,7 @@
                                 <input type="hidden" name="uid" value="${uid}">  <!-- user_id -->
                                                         <div class="sign__group">
                                                                 <span class="sign__text">Your Name</span><br>
-								<input type="text" name="name" id="name" value="${name}" class="signn__input" disabled>
+								<input type="text" name="name" id="name" value="${name}" class="signn__input">
 							</div>
                                                         <div class="sign__group">
                                                                 <span class="sign__text">Selected movie</span><br>

@@ -29,12 +29,12 @@
 
 	<meta name="description" content="">
 	<meta name="keywords" content="">
-	<meta name="author" content="Dmitry Volkov">
 	<title>PVR Cinemas</title>
 
 </head>
 <body class="body">
     <input type="hidden" id="status" value="<%= request.getAttribute("status") %>">
+    <input type="hidden" id="status2" value="<%= request.getAttribute("status2") %>">
 	<div class="sign section--bg" data-bg="img/section/section.jpg">
 		<div class="container">
 			<div class="row">
@@ -92,6 +92,13 @@
     var status = document.getElementById("status").value;
     if(status === "failed") {
         swal("Sorry", "Wrong username or password", "error");
+    }
+</script>
+
+<script>
+    var status2 = document.getElementById("status2").value;
+    if(status2 === "success") {
+        swal("Success", "Account created successfully", "success");
     }
 </script>
 </body>
