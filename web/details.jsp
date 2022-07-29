@@ -78,7 +78,22 @@
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
-        </style>
+</style>
+<script>
+    function deleteRecord(id){
+    var doIt=confirm('Do you want to delete the record?');
+  if(doIt){
+   var f=document.form;
+    f.method="post";
+    f.action='../DeleteServlet?id='+id;
+    f.submit();
+    }
+  else{
+
+    }
+}
+</script>
+
 </head>
 <body class="body">
 	
@@ -165,14 +180,14 @@
 		</div>
 
 		<!-- header search -->
-		<form action="#" class="header__search">
+		<form action="searchMovie.jsp" method="post" class="header__search">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
 						<div class="header__search-content">
 							<input type="text" placeholder="Search for a movie, TV Series that you are looking for">
 
-							<button type="button">search</button>
+							<button type="submit">search</button>
 						</div>
 					</div>
 				</div>
@@ -193,6 +208,7 @@
 			<div class="row">
                                              <%
                                             String id=request.getParameter("id");
+//                                          id=request.getSession().getAttribute("did").toString();
                                             try {
                                                 Class.forName("com.mysql.jdbc.Driver");
                                                 Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
@@ -344,7 +360,7 @@
 								<div class="col-12">
 									<div class="comments">
 										<ul class="comments__list">
-											<li class="comments__item">
+                                                                                    <h2 class="section__title">User Feedbacks</h2>
                                                                                             <%
                                                                                              try {
                                                                                             Class.forName("com.mysql.jdbc.Driver");
@@ -353,25 +369,23 @@
                                                                                             String sql = "SELECT * FROM feedback where mid="+id;
                                                                                             ResultSet rs = st.executeQuery(sql);
                                                                                             while (rs.next()) {
+                                                                                                String fid = rs.getString("fid");
                                                                                                 String name = rs.getString("uname");
                                                                                                 String fback = rs.getString("fback");
 
                                                                                             %>
-												<div class="comments__actions">
-													<div class="comments__rate">
-                                                                                                        </div>
-													<!--<img class="comments__avatar" src="img/user.png" alt="">-->
-                                                                                                        <span class="comments__name"><%=name%></span>
+											<li class="comments__item">
+												<div class="comments__autor">
+                                                                                                    <span class="comments__name"><i><%=name%></i></span><br>
 												</div>
 												<p class="comments__text"><%=fback%>
 												<div class="comments__actions">
 													<div class="comments__rate">
 													</div>
-													<button type="button"><i class="icon ion-md-trash"></i>Delete</button>
+                                                                                                    <a href="deleteComment.jsp?id=<%=fid%>" onclick="deleteRecord(<%=rs.getString(1)%>);" class="delete"><i class="icon ion-md-trash"></i></a>
 												</div>
 											</li>
 										</ul>
-                                                                                                 <br>
                                                                                 <%
                                                                                     }
                                                                                 } catch (Exception e) {

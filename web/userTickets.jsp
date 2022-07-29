@@ -139,25 +139,11 @@ td{
 							<ul class="header__nav">
                                                            <!-- dropdown -->
 								<li class="header__nav-item">
-<!--									<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-
-									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuHome">
-										<li><a href="index.html">Home slideshow bg</a></li>
-										<li><a href="index2.html">Home static bg</a></li>
-									</ul>-->
 								</li>
 								<!-- end dropdown -->
 
 								<!-- dropdown -->
 								<li class="header__nav-item">
-<!--									<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catalog</a>
-
-									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
-										<li><a href="catalog1.html">Catalog Grid</a></li>
-										<li><a href="catalog2.html">Catalog List</a></li>
-										<li><a href="details1.html">Details Movie</a></li>
-										<li><a href="details2.html">Details TV Series</a></li>
-									</ul>-->
 								</li>
 								<!-- end dropdown -->
 
@@ -205,14 +191,14 @@ td{
 		</div>
 
 		<!-- header search -->
-		<form action="searchMovie.jsp" method="post" class="header__search">
+		<form action="#" class="header__search">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
 						<div class="header__search-content">
 							<input type="text" placeholder="Search for a movie, TV Series that you are looking for">
 
-							<button type="submit">search</button>
+							<button type="button">search</button>
 						</div>
 					</div>
 				</div>
@@ -227,34 +213,31 @@ td{
 
         <br><br><br><br><br><br>
 <div class="col-16 col-md-6 col-lg-12">
-<form class="signn__form">
-    
-    <div class="container">
-  <div class="row">
-    <div class="col">
         <%
-        String id=request.getParameter("id");
+        String uuid=request.getSession().getAttribute("uid").toString();
+        String id=request.getParameter("userid");
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
             Statement st = con.createStatement();
-            String sql = "SELECT * FROM booking where id="+id;
+            String sql = "SELECT * FROM booking where uid="+uuid;
             ResultSet rs = st.executeQuery(sql);
-
+            int n =0;
             while (rs.next()) {
-                String mid = rs.getString("mid");
+                String tid = rs.getString("id");
                 String moviename = rs.getString("mname");
                 String stime = rs.getString("stime");
                 String seatno = rs.getString("seatno");
                 String amount = rs.getString("amount");
                 double am=Double.parseDouble(amount)+15.84;
+                n=n+1;
         %>
-        <h2 class="sign__text">IMPORTANT INSTRUCTIONS</h2>
-        <span class="sign__text">This transaction can be cancelled up to 4 hour(s) before the show as per cinema cancellation policy.</span><br>
-        <span class="sign__text">The Credit Card and Credit Card Holder must be present at the ticket counter while collecting the ticket(s).GST collected is paid to the department.</span><br>
-        <span class="sign__text">999799 - Other Services n.e.c. PAN Based GSTN. 27AABCB3428P1ZF.</span><br>
-        <span class="sign__text">For Further Assistance:</span><br>
-        <span class="sign__text"><a href="https://www.yedu.tech/">https://www.yedu.tech/</a></span><br><br>
+<form class="signn__form">
+    
+<div class="container">
+  <div class="row">
+    <div class="col"><br><br>
+        <h2 class="section__title">Ticket - <%= n %></h2>
         <h2 class="sign__text">ORDER SUMMARY</h2>
         <span class="sign__text">Ticket amount: ₹ <%= amount %></span><br>
         <span class="sign__text">Quantity: <%= seatno %></span><br>
@@ -262,8 +245,7 @@ td{
         <span class="sign__text">Amount paid: ₹ <%= am %></span><br>
     </div>
 
-    <div class="col">
-        <h2 class="sign__textt1">Your booking is confirmed!</h2>
+    <div class="col"><br><br>
         <div id="invoice-POS">
     
                 <center id="top">
@@ -281,7 +263,7 @@ td{
                 </div><!--End Invoice Mid-->
                                             <div id="midd">
                                                 <div class="info">
-                                                  <h6>Ticket number : PVRC<%= id %></h6>
+                                                  <h6>Ticket number : PVRC<%= tid %></h6>
 
                                                    </div>
 
@@ -323,9 +305,7 @@ td{
         <div class="sign__textt2">
         <button class="form__btn" type="submit">Download</button>
         </div>
-        <div class="sign__textt3">
-            <a href="details.jsp?id=<%=mid%>" class="sign__text"><span><i class="icon ion-md-arrow-round-back">&nbsp;</i>Back to details</span></a>
-        </div>
+
         <%
                 }
             con.close();
@@ -333,6 +313,9 @@ td{
                 out.println(e);
             }
         %>
+         <div class="sign__textt3">
+            <a href="home.jsp" class="sign__text"><span><i class="icon ion-md-arrow-round-back">&nbsp;</i>Back to home</span></a>
+        </div>
 </form>
 </div>
 

@@ -804,7 +804,7 @@ table.table .avatar {
                                         <tbody>
                                                 <tr>
                                                     <td><%=moname%></td>
-                                                        <td><%=rating%></td>
+                                                        <td><%=rating%> /10.0</td>
                                                 </tr>
                                                         <%
                         }

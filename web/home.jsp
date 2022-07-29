@@ -86,7 +86,7 @@
 
 -->								
 								<!-- dropdown -->
-
+                                                                <input type="hidden" name="userid" id="name" value="${id}" class="signn__input">
 								<!-- end dropdown -->
 							</ul>
 							<!-- end header nav -->
@@ -102,7 +102,7 @@
 
 							</div>
 
-								<a class="header__sign-in">
+								<a href="userTickets.jsp" class="header__sign-in">
 									<i class="icon ion-ios-log-in"></i>
 									<span><%=session.getAttribute("name")%></span>
 								</a>
@@ -124,14 +124,14 @@
 		</div>
 
 		<!-- header search -->
-		<form action="#" class="header__search">
+		<form action="searchMovie.jsp" method="post" class="header__search">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
 						<div class="header__search-content">
-							<input type="text" placeholder="Search for a movie, TV Series that you are looking for">
+							<input type="text" name="search" placeholder="Search for a movie, TV Series that you are looking for">
 
-							<button type="button">search</button>
+							<button type="submit">search</button>
 						</div>
 					</div>
 				</div>
