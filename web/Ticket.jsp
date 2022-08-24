@@ -43,7 +43,7 @@
   box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
   padding:2mm;
   margin: 0 auto;
-  width: 50mm;
+  width: 62mm;
   background: #FFF;
 } 
   
@@ -248,13 +248,14 @@ td{
                 String seatno = rs.getString("seatno");
                 String amount = rs.getString("amount");
                 double am=Double.parseDouble(amount)+15.84;
+                
         %>
         <h2 class="sign__text">IMPORTANT INSTRUCTIONS</h2>
         <span class="sign__text">This transaction can be cancelled up to 4 hour(s) before the show as per cinema cancellation policy.</span><br>
         <span class="sign__text">The Credit Card and Credit Card Holder must be present at the ticket counter while collecting the ticket(s).GST collected is paid to the department.</span><br>
         <span class="sign__text">999799 - Other Services n.e.c. PAN Based GSTN. 27AABCB3428P1ZF.</span><br>
         <span class="sign__text">For Further Assistance:</span><br>
-        <span class="sign__text"><a href="https://www.yedu.tech/">https://www.yedu.tech/</a></span><br><br>
+        <span class="sign__text"><a href="https://www.yedu.tech/">https://www.pvrcinemas.co/</a></span><br><br>
         <h2 class="sign__text">ORDER SUMMARY</h2>
         <span class="sign__text">Ticket amount: ₹ <%= amount %></span><br>
         <span class="sign__text">Quantity: <%= seatno %></span><br>

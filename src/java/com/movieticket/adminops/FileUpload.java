@@ -53,7 +53,11 @@ public class FileUpload extends HttpServlet {
         String stime1 = request.getParameter("stime1");
         String stime2 = request.getParameter("stime2");
         String stime3 = request.getParameter("stime3");
-        String seatno = request.getParameter("seat");
+        String stime4 = request.getParameter("stime4");
+        String seat1 = request.getParameter("seat1");
+        String seat2 = request.getParameter("seat2");
+        String seat3 = request.getParameter("seat3");
+        String seat4 = request.getParameter("seat4");
 
         Part part = request.getPart("file");//
         String fileName = extractFileName(part);//file name
@@ -88,7 +92,7 @@ public class FileUpload extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
-            PreparedStatement pst = con.prepareStatement("insert into movie_details values(?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pst = con.prepareStatement("insert into movie_details values(?,?,?,?,?,?,?,?,?,?,?,?)");
             pst.setInt(1, id);
             pst.setString(2, moviename);
             pst.setString(3, moviedesc);
@@ -100,6 +104,7 @@ public class FileUpload extends HttpServlet {
             pst.setString(9, stime1);
             pst.setString(10, stime2);
             pst.setString(11, stime3);
+            pst.setString(12, stime4);
             pst.executeUpdate();
             
             
@@ -114,9 +119,7 @@ public class FileUpload extends HttpServlet {
                 ps.executeUpdate();
                 }
 
-            PreparedStatement ps1 = con.prepareStatement("insert into seat values(?,?) ");
-            ps1.setInt(1, id);
-            ps1.setString(2, seatno);
+            PreparedStatement ps1 = con.prepareStatement("INSERT INTO seat(`mid`,`seat1`,`seat2`,`seat3`,`seat4`) VALUES ('"+id+"','"+seat1+"','"+seat2+"','"+seat3+"','"+seat4+"')");
             ps1.executeUpdate();
             
 //            dispatcher = request.getRequestDispatcher("adminhome.jsp");

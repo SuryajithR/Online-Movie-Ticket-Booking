@@ -290,7 +290,6 @@ button:hover{
                                         while (rs.next()) {
                                             String username = rs.getString("uname");
                                             String moviename = rs.getString("mname");
-                                            String seatno = rs.getString("seatno");
                                             String amount = rs.getString("amount");
                                             double am=Double.parseDouble(amount)+15.84;
                                         %>
@@ -347,9 +346,9 @@ button:hover{
                         <option>03 jun</option>
                     </select>
                     <select>
-                        <option>2020</option>
-                        <option>2021</option>
-                        <option>2022</option>
+                        <option>2024</option>
+                        <option>2025</option>
+                        <option>2026</option>
                     </select>
                 </div>
             </div>

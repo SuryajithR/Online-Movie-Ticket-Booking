@@ -19,7 +19,9 @@
                    Class.forName("com.mysql.jdbc.Driver");
   Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?"+"user=root&password=root");
   Statement st=conn.createStatement();
+  Statement st1=conn.createStatement();
   st.executeUpdate("Delete from now_running where movie_id="+id );
+  st1.executeUpdate("Delete from seat where mid="+id );
    response.sendRedirect("adminhome.jsp");
            }
            catch(Exception e)

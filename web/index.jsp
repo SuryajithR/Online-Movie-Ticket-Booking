@@ -224,6 +224,22 @@
 	</section>
         </form>
 	<!-- end home -->
+        
+        <!-- partners -->
+	<section class="section">
+		<div class="container">
+			<div class="row">
+				<!-- section title -->
+				<div class="col-12">
+					<h2 class="section__title section__title--no-margin"></h2>
+				</div>
+				<!-- end section title -->
+
+				
+			</div>
+		</div>
+	</section>
+	<!-- end partners -->
 
 	<!-- footer -->
 	<footer class="footer">
@@ -280,12 +296,12 @@
 				<!-- footer copyright -->
 				<div class="col-12">
 					<div class="footer__copyright">
-						<!--<small><a target="_blank" href="https://www.yedu.tech/">Yedu K T Y</a></small>-->
+						<small><a target="_blank" href="https://www.yedu.tech/">PVR Movies &#169;2022</a></small>
 
-<!--						<ul>
+						<ul>
 							<li><a href="#">Terms of Use</a></li>
 							<li><a href="#">Privacy Policy</a></li>
-						</ul>-->
+						</ul>
 					</div>
 				</div>
 				<!-- end footer copyright -->

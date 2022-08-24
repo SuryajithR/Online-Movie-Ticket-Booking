@@ -3,6 +3,7 @@
     Created on : 25-Jun-2022, 10:46:00 pm
     Author     : surya
 --%>
+<%@page import="com.sun.org.apache.xml.internal.serializer.ToTextStream"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -27,22 +28,20 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <script language="javascript">
 function deleteRecord(id){
     var doIt=confirm('Do you want to delete the record?');
   if(doIt){
    var f=document.form;
     f.method="post";
-    f.action='../DeleteServlet?id='+id;
+    f.action='../deleteMovie?id='+id;
     f.submit();
     }
   else{
@@ -67,6 +66,16 @@ function reset(id){
     $('#datetimepicker1').datetimepicker();
     });
 </script>
+
+
+<script type="text/javascript"> 
+$(document).ready(function(){ 
+$("#mytable").DataTable();
+
+});
+
+</script>
+
 <style>
     
 
@@ -352,7 +361,7 @@ table.table .avatar {
     
     
         <br><br><br><br><br>
-                             
+     
 <!-- ADD Modal HTML -->
 <div id="addEmployeeModal" class="modal fade">
     <form action="FileUpload" method="post" enctype="multipart/form-data">
@@ -384,33 +393,59 @@ table.table .avatar {
 						<label>Image Link</label>
 						<input type="file" name="file" required>
 					</div>
-                                        <div class="form-group">
+                                        <div class="row">
+                                        <div class="col-sm">
 						<label>Release Date</label>
                                                 <input type="date" name="rdate" class="form-control" required>
 					</div>
-                                        <div class="form-group">
+                                        <div class="col-sm">
                                             <label>Now running</label>
-                                            <select name="now" id="now" class="form-control" required>
+                                            <select name="now" id="now" class="form-control" size="1" required>
                                                 <option value="true">True</option>
                                                 <option value="false">False</option>
                                               </select>
 					</div>
-                                        <div class="form-group">
+                                        </div><br>
+                                     <div class="row">
+                                        <div class="col-sm">
 						<label>Show Time 1</label>
 						<input type="text" name="stime1" class="form-control" required>
 					</div>
-                                    <div class="form-group">
+                                        <div class="col-sm">
+                                                    <label>Seat count</label>
+                                                    <input type="text" name="seat1" value="250" class="form-control" required>
+                                        </div>
+                                     </div><br>
+                                     <div class="row">
+                                        <div class="col-sm">
 						<label>Show Time 2</label>
 						<input type="text" name="stime2" class="form-control" required>
 					</div>
-                                    <div class="form-group">
+                                        <div class="col-sm">
+                                                    <label>Seat count</label>
+                                                    <input type="text" name="seat2" value="250" class="form-control" required>
+                                        </div>
+                                     </div><br>
+                                     <div class="row">
+                                        <div class="col-sm">
 						<label>Show Time 3</label>
 						<input type="text" name="stime3" class="form-control" required>
 					</div>
-                                    <div class="form-group">
-						<label>Available seat count</label>
-						<input type="text" name="seat" class="form-control" required>
+                                        <div class="col-sm">
+                                                    <label>Seat count</label>
+                                                    <input type="text" name="seat3" value="250" class="form-control" required>
+                                        </div>
+                                     </div><br>
+                                     <div class="row">
+                                        <div class="col-sm">
+						<label>Show Time 4</label>
+						<input type="text" name="stime4" class="form-control" required>
 					</div>
+                                        <div class="col-sm">
+                                                    <label>Seat count</label>
+                                                    <input type="text" name="seat4" value="250" class="form-control" required>
+                                        </div>
+                                     </div><br>
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -546,10 +581,24 @@ table.table .avatar {
                                                         <th>Genre</th>
                                                         <th>Release Date</th>
                                                         <th>Now running</th>
-                                                        <th>Show Time 1</th>
-                                                        <th>Show Time 2</th>
-                                                        <th>Show Time 3</th>
+                                                        <th colspan="4" style="text-align:center;">Show time</th>
                                                         <th>Image</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th>1</th>
+                                                        <th>2</th>
+                                                        <th>3</th>
+                                                        <th>4</th>
+                                                        <th></th>
+                                                        <th></th>
                                                         <th></th>
                                                 </tr>
                                         </thead>
@@ -571,6 +620,7 @@ table.table .avatar {
                                                     String stime1 = rs.getString("show_time_1");
                                                     String stime2 = rs.getString("show_time_2");
                                                     String stime3 = rs.getString("show_time_3");
+                                                    String stime4 = rs.getString("show_time_4");
                                                 %>  
                                         <tbody>
                                                 <tr>
@@ -583,7 +633,8 @@ table.table .avatar {
                                                         <td><%=stime1%></td>
                                                         <td><%=stime2%></td>
                                                         <td><%=stime3%></td>
-                                                        <td><image src="<%=filename%>" width="150" height="100"/></td>
+                                                        <td><%=stime4%></td>
+                                                        <td colspan="2"><image src="<%=filename%>" width="150" height="100"/></td>
                                                         <td>
                                                                 <a href="EditMovie.jsp?id=<%=id%>" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 
@@ -804,7 +855,7 @@ table.table .avatar {
                                         <tbody>
                                                 <tr>
                                                     <td><%=moname%></td>
-                                                        <td><%=rating%> /10.0</td>
+                                                    <td><b><%=rating%></b> /10.0</td>
                                                 </tr>
                                                         <%
                         }
@@ -847,8 +898,24 @@ table.table .avatar {
                                                     <th></th>
                                                         <th>Movie Id</th>
                                                         <th>Movie Name</th>
-                                                        <th>No of seats available</th>
+                                                        <th colspan="4">No of seats available</th>
+                                                        <th></th>
                                                         <th>Total no of seats</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th>Show 1</th>
+                                                        <th>Show 2</th>
+                                                        <th>Show 3</th>
+                                                        <th>Show 4</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
                                                         <th></th>
                                                         
                                                 </tr>
@@ -863,7 +930,10 @@ table.table .avatar {
                                                 ResultSet rs = st.executeQuery(sql);
                                                 while (rs.next()) {
                                                     String moid = rs.getString("mid");
-                                                    String seat = rs.getString("no_of_seats");
+                                                    String seat1 = rs.getString("seat1");
+                                                    String seat2 = rs.getString("seat2");
+                                                    String seat3 = rs.getString("seat3");
+                                                    String seat4 = rs.getString("seat4");
                                                         String sql1 = "SELECT movie_name FROM now_running where movie_id="+moid;
                                                         ResultSet rs1 = st1.executeQuery(sql1);
                                                         if (rs1.next()){
@@ -874,10 +944,18 @@ table.table .avatar {
                                                     <td></td>
                                                         <td><%=moid%></td>
                                                         <td><%=mname%></td>
-                                                        <td><%=seat%></td>
-                                                        <td>250</td>
+                                                        <td><%=seat1%>&nbsp;&nbsp;
+                                                        <a href="reset.jsp?id=<%=moid%>" onclick="reset(<%=rs.getString(1)%>);" class="btn btn-warning"><span>Reset</span></a></td>
+                                                        <td><%=seat2%>&nbsp;&nbsp;
+                                                        <a href="reset_1.jsp?id=<%=moid%>" onclick="reset(<%=rs.getString(1)%>);" class="btn btn-warning"><span>Reset</span></a></td>
+                                                        <td><%=seat3%>&nbsp;&nbsp;
+                                                        <a href="reset_2.jsp?id=<%=moid%>" onclick="reset(<%=rs.getString(1)%>);" class="btn btn-warning"><span>Reset</span></a></td>
+                                                        <td><%=seat4%>&nbsp;&nbsp;
+                                                        <a href="reset_3.jsp?id=<%=moid%>" onclick="reset(<%=rs.getString(1)%>);" class="btn btn-warning"><span>Reset</span></a></td>
+                                                        <td></td>
+                                                        <td colspan="1"><b>250</b></td>
                                                         <td>
-                                                            <a href="reset.jsp?id=<%=moid%>" onclick="reset(<%=rs.getString(1)%>);" class="btn btn-warning"><span>Reset</span></a></td>
+                                                            <!--<a href="reset.jsp?id=<%=moid%>,seat=1" onclick="reset(<%=rs.getString(1)%>);" class="btn btn-warning"><span>Reset</span></a></td>-->
                                                         
                                                 </tr>
 
@@ -930,15 +1008,23 @@ table.table .avatar {
                                                 Connection con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?useSSL=false","root","root");
                                                 Statement st = con.createStatement();
                                                 Statement st1 = con.createStatement();
-                                                String sql = "SELECT * FROM now_running";
+                                                Statement st2 = con.createStatement();
+                                                String sql = "SELECT * FROM movie_details";
                                                 ResultSet rs = st.executeQuery(sql);
                                                 while (rs.next()) {
                                                     String rid = rs.getString("movie_id");
                                                     String rname = rs.getString("movie_name");
                                                         String sql1 = "SELECT SUM(amount) FROM booking WHERE mid="+rid;
+                                                        String sql2 = "SELECT COUNT(amount) FROM booking WHERE mid="+rid;
                                                         ResultSet rs1 = st1.executeQuery(sql1);
+                                                        ResultSet rs2 = st2.executeQuery(sql2);
+                                                        if(rs2.next()){
+                                                            String co = rs2.getString("COUNT(amount)");
+                                                            Double count = Double.parseDouble(co);
                                                         while(rs1.next()){
-                                                            String amount = rs1.getString("SUM(amount)");
+                                                            String am = rs1.getString("SUM(amount)");
+                                                            count *= 15.84;
+                                                            Double amount = Double.parseDouble(am)+count;
                                                     
                                                 %>
                                         <tbody>
@@ -953,7 +1039,8 @@ table.table .avatar {
                                         </tbody>
                <%
                         }
-}
+                        }
+                        }
                     } catch (Exception e) {
                         out.println(e);
                     }
@@ -967,14 +1054,29 @@ table.table .avatar {
                                                 Statement st = con.createStatement();
                                                 String sql = "SELECT SUM(amount) as sum FROM booking";
                                                 ResultSet rs = st.executeQuery(sql);
+                                                
+                                                Statement st1 = con.createStatement();
+                                                String sql1 = "SELECT COUNT(amount) as co FROM booking";
+                                                ResultSet rs1 = st1.executeQuery(sql1);
+                                                if(rs1.next()){
+                                                    String co = rs1.getString("co");
+                                                    Double cou = Double.parseDouble(co);
                                                 while (rs.next()) {
-                                                    String sum = rs.getString("sum");                      
+                                                    String sum = rs.getString("sum");
+                                                    cou *= 15.84;
+                                                    Double totalsum = Double.parseDouble(sum)+cou;
+                                                    
                                                 %>
                                         <thead>
                                                 <tr>
                                                     <th></th>
                                                         <th>Total amount</th>
-                                                        <th>₹ <%=sum%></th>
+                                                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                                        <th >₹ <%=totalsum%></th>
+                                                        <th></th>
                                                         <th><a id="save" href="" class="btn btn-warning">Download file</a></th>
                                                         
                                                 </tr>
@@ -987,6 +1089,7 @@ table.table .avatar {
 
                                         </tbody>
                <%
+                        }
                         }
                     } catch (Exception e) {
                         out.println(e);

@@ -38,18 +38,49 @@
             String sql = "SELECT * FROM now_running where movie_id="+mid;
             ResultSet rs = st1.executeQuery(sql);
             
-            String sql2 = "SELECT no_of_seats FROM seat where mid="+mid;
+            String sql2 = "SELECT * FROM seat where mid="+mid;
             ResultSet rs2 = st2.executeQuery(sql2);
             while (rs2.next()) {
-            String sno = rs2.getString("no_of_seats");
-            int stno=Integer.parseInt(sno);
-            int seat=stno-seatno1;
-            String s=Integer.toString(seat);
-            
-            String sql1="Update seat set no_of_seats=? where mid="+mid;
-            ps = con.prepareStatement(sql1);
-            ps.setString(1, s);
-            ps.executeUpdate();
+            if (stime.equals("09:00 AM")) {
+                    String sno = rs2.getString("seat1");
+                    int stno=Integer.parseInt(sno);
+                    int seat=stno-seatno1;
+                    String s=Integer.toString(seat);
+                    String sql1="Update seat set seat1=? where mid="+mid;
+                    ps = con.prepareStatement(sql1);
+                    ps.setString(1, s);
+                    ps.executeUpdate();
+                }
+                else if (stime.equals("01:00 PM")) {
+                    String sno = rs2.getString("seat2");
+                    int stno=Integer.parseInt(sno);
+                    int seat=stno-seatno1;
+                    String s=Integer.toString(seat);
+                    String sql1="Update seat set seat2=? where mid="+mid;
+                    ps = con.prepareStatement(sql1);
+                    ps.setString(1, s);
+                    ps.executeUpdate();
+                }
+                else if (stime.equals("05:00 PM")) {
+                    String sno = rs2.getString("seat3");
+                    int stno=Integer.parseInt(sno);
+                    int seat=stno-seatno1;
+                    String s=Integer.toString(seat);
+                    String sql1="Update seat set seat3=? where mid="+mid;
+                    ps = con.prepareStatement(sql1);
+                    ps.setString(1, s);
+                    ps.executeUpdate();
+                }
+                else{
+                    String sno = rs2.getString("seat4");
+                    int stno=Integer.parseInt(sno);
+                    int seat=stno-seatno1;
+                    String s=Integer.toString(seat);
+                    String sql1="Update seat set seat4=? where mid="+mid;
+                    ps = con.prepareStatement(sql1);
+                    ps.setString(1, s);
+                    ps.executeUpdate();
+            }
             }
             
             String sql3 = "select * from booking order by id desc limit 1;";

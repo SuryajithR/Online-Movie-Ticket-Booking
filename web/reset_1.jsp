@@ -9,7 +9,6 @@ pageEncoding="ISO-8859-1"%>
 
 <%
 String id = request.getParameter("id");
-String seat = request.getParameter("seat");
 
 if(id != null)
 {
@@ -19,7 +18,7 @@ try
 {
     Class.forName("com.mysql.jdbc.Driver");
     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie", "root", "root");
-    String sql="Update seat set seat1=250 where mid="+id;
+    String sql="Update seat set seat2=250 where mid="+id;
     ps = con.prepareStatement(sql);
 
     int i = ps.executeUpdate();

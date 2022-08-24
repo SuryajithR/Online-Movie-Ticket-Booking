@@ -89,7 +89,7 @@
     f.submit();
     }
   else{
-
+      
     }
 }
 </script>
@@ -374,6 +374,7 @@
                                                                                                 String fback = rs.getString("fback");
 
                                                                                             %>
+                                                                                        <input type="hidden" name="mid" id="mid" value="<%=id%>" class="signn__input">
 											<li class="comments__item">
 												<div class="comments__autor">
                                                                                                     <span class="comments__name"><i><%=name%></i></span><br>
@@ -419,6 +420,7 @@
                                                     String mname = rs.getString("movie_name");
                                                     String genre = rs.getString("genre");
                                                     String filename = rs.getString("file_name");
+                                                    String mid = rs.getString("movie_id");
                                                 
                                         %>
 						<!-- card -->
@@ -426,7 +428,7 @@
 							<div class="card">
 								<div class="card__cover">
 									<img src="<%=filename%>" width="180" height="260"/>
-									<a href="#" class="card__play">
+									<a href="details.jsp?id=<%=mid%>" class="card__play">
 										<i class="icon ion-ios-play"></i>
 									</a>
 								</div>

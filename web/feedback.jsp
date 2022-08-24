@@ -7,7 +7,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*" %>
-
 <%
 String name = request.getParameter("name");
 String mid = request.getParameter("mid");
@@ -17,6 +16,7 @@ String rating = request.getParameter("rate");
 
 Connection con = null;
 PreparedStatement ps = null;
+
 try
 {
 Class.forName("com.mysql.jdbc.Driver");
@@ -32,7 +32,7 @@ ps.setString(5, rating);
 int i = ps.executeUpdate();
 if(i > 0)
 {
-response.sendRedirect("home.jsp");
+response.sendRedirect("details.jsp?id="+mid);
 }
 else
 {

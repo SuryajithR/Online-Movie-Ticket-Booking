@@ -19,9 +19,21 @@
                    Class.forName("com.mysql.jdbc.Driver");
                     Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?"+"user=root&password=root");
                     Statement st=conn.createStatement();
+                    String usname=String.valueOf(session.getAttribute("name"));
+                    Statement st1=conn.createStatement();
+                    String sql1 = "SELECT * FROM feedback where fid="+id;
+                    ResultSet rs1 = st1.executeQuery(sql1);
+                    while (rs1.next()) {
+                        String mid  = rs1.getString("mid");
+                        String namee  = rs1.getString("uname");
+                    if(namee.equals(usname)){
                     st.executeUpdate("Delete from feedback where fid="+id );
-//                    session.setAttribute("did", 2);
-                     response.sendRedirect("home.jsp");
+                     response.sendRedirect("details.jsp?id="+mid);
+                    }
+                    else{
+                    response.sendRedirect("details.jsp?id="+mid);
+                    }
+           }
                      }
                      catch(Exception e)
                      {

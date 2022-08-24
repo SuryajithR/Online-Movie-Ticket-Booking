@@ -159,7 +159,7 @@
                                                 Statement st = con.createStatement();
                                                 Statement st1 = con.createStatement();
                                                 String sql = "SELECT * FROM now_running where movie_id="+id;
-                                                String sql1 = "SELECT show_time_1,show_time_2,show_time_3 FROM movie_details where movie_id="+id;
+                                                String sql1 = "SELECT show_time_1,show_time_2,show_time_3,show_time_4 FROM movie_details where movie_id="+id;
                                                 ResultSet rs = st.executeQuery(sql);
                                                 ResultSet rs1 = st1.executeQuery(sql1);
                                                 while (rs.next()) {
@@ -168,6 +168,7 @@
                                                     String show_time_1 = rs1.getString("show_time_1");
                                                     String show_time_2 = rs1.getString("show_time_2");
                                                     String show_time_3 = rs1.getString("show_time_3");
+                                                    String show_time_4 = rs1.getString("show_time_4");
                             %>
                             
                             
@@ -188,6 +189,7 @@
                                                                         <option value="<%=show_time_1%>"><%=show_time_1%></option>
                                                                         <option value="<%=show_time_2%>"><%=show_time_2%></option>
                                                                         <option value="<%=show_time_3%>"><%=show_time_3%></option>
+                                                                        <option value="<%=show_time_4%>"><%=show_time_4%></option>
                                                                     </select>
 							</div>
 							<div class="sign__group">

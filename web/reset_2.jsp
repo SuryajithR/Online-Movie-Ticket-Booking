@@ -19,7 +19,7 @@ try
 {
     Class.forName("com.mysql.jdbc.Driver");
     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie", "root", "root");
-    String sql="Update seat set seat1=250 where mid="+id;
+    String sql="Update seat set seat3=250 where mid="+id;
     ps = con.prepareStatement(sql);
 
     int i = ps.executeUpdate();
