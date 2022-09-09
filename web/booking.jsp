@@ -196,6 +196,18 @@
                                                             <span class="sign__text">No of Seats required</span><br>
 								<input type="number" name="seat" id="seat" onkeyup="getOrderTotal()" class="signn__input" placeholder="" required>
 							</div>
+                                                                    
+                                                        <div class="row">
+                                                           <div class="sign__group">
+                                                                   <span class="sign__text">Remaining Seats</span><br>
+                                                                   <input type="text" name="aseat" id="aseat" class="signn1__input" disabled>
+                                                           </div>
+                                                           <div class="sign__group">
+                                                               <span class="sign__text">Total Seat Count</span><br>
+                                                                       <input type="text" name="seat2" value="250" class="signn1__input" disabled>
+                                                           </div>
+                                                        </div>
+                                                                    
                                                         <div class="sign__group">
                                                             <span class="sign__text">Total amount</span><br>
 								<input type="text" name="Amount" id="amount" value="0" class="signn__input">
@@ -312,6 +324,8 @@
                     else{
                     total = a * 200;
                     document.getElementById('amount').value = total;
+                    rem=250-a;
+                    document.getElementById('aseat').value = rem;
                     }
                 }
     </script>
