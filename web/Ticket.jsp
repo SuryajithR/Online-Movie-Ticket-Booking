@@ -255,7 +255,7 @@ td{
         <span class="sign__text">The Credit Card and Credit Card Holder must be present at the ticket counter while collecting the ticket(s).GST collected is paid to the department.</span><br>
         <span class="sign__text">999799 - Other Services n.e.c. PAN Based GSTN. 27AABCB3428P1ZF.</span><br>
         <span class="sign__text">For Further Assistance:</span><br>
-        <span class="sign__text"><a href="https://www.yedu.tech/">https://www.pvrcinemas.co/</a></span><br><br>
+        <span class="sign__text"><a href="">https://www.pvrcinemas.co/</a></span><br><br>
         <h2 class="sign__text">ORDER SUMMARY</h2>
         <span class="sign__text">Ticket amount: ₹ <%= amount %></span><br>
         <span class="sign__text">Quantity: <%= seatno %></span><br>
