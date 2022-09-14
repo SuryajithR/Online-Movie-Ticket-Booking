@@ -264,7 +264,7 @@
 					<h6 class="footer__title">Contact</h6>
 					<ul class="footer__list">
 						<li><a href="#">+91 6969696969</a></li>
-						<li><a href="#">https://www.yedu.tech/</a></li>
+						<li><a href="#"></a></li>
 					</ul>
 					<ul class="footer__social">
 						<li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
