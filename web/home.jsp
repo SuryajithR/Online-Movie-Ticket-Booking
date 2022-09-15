@@ -278,7 +278,7 @@
 				<!-- footer copyright -->
 				<div class="col-12">
 					<div class="footer__copyright">
-						<small><a target="" href="#">PVR Movies &#169;2022</a></small>
+						<small><a href="#">PVR Movies &#169;2022</a></small>
 
 						<ul>
 							<li><a href="#">Terms of Use</a></li>
