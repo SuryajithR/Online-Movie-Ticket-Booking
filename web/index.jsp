@@ -224,7 +224,7 @@
 			<div class="row">
 				<!-- section title -->
 				<div class="col-12">
-					<h2 class="section__title section__title--no-margin"></h2>
+					<h2 class="section__title section__title--no-margin">sdsdsdsddsdsds</h2>
 				</div>
 				<!-- end section title -->
 
