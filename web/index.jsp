@@ -196,7 +196,6 @@
 							<!-- card -->
 							<div class="card card--big">
 								<div class="card__cover">
-									<!--<img src="img/covers/cover.jpg" alt="">-->
                                                                         <img src="<%=filename%>" width="150" height="360"/>
 			
 								</div>
