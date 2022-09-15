@@ -1,3 +1,9 @@
+<%--<%
+    if(session.getAttribute("name")==null){
+    response.sendRedirect("index.jsp");
+    }
+%>--%>
+
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
