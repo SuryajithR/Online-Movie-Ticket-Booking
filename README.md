@@ -11,4 +11,4 @@ movies for a theatre. Uses Java Server Pages and MySQL Database.</h4>
 <h1 align="middle">T H A N K &nbsp; Y O U</h1>
 
 
-<h4 align="middle">Swetha KJ  &nbsp;&nbsp;|&nbsp;&nbsp;  Suryajith R  &nbsp;&nbsp;|&nbsp;&nbsp;  Yedu Krish TY  &nbsp;&nbsp;|&nbsp;&nbsp;  Vineetha U P</h4>
+<h4 align="middle">Swetha KJ  &nbsp;&nbsp;|&nbsp;&nbsp;  Suryajith R  &nbsp;&nbsp;|&nbsp;&nbsp;  Yedu Krish TY  &nbsp;&nbsp;|&nbsp;&nbsp;  Vineetha U Prabhu</h4>
