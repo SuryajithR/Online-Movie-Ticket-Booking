@@ -36,7 +36,7 @@
 
 	<meta name="description" content="">
 	<meta name="keywords" content="">
-	<meta name="author" content="Dmitry Volkov">
+	<meta name="author" content="Suryajith R">
 	<title>PVR Cinemas</title>
 
 </head>
