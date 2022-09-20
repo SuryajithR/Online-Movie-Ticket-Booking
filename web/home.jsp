@@ -36,7 +36,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="Suryajith R">
-	<title></title>
+	<title>PVR Cinemas</title>
 
 </head>
 <body class="body">
