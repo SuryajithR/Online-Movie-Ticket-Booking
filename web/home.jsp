@@ -42,7 +42,7 @@
 <body class="body">
 	
 	<!-- header -->
-
+	<header class="header">
 		<div class="header__wrap">
 			<div class="container">
 				<div class="row">
