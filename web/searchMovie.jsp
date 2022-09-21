@@ -36,7 +36,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="Suryajith R">
-	<title>FlixGo ? Online Movies, TV Shows & Cinema HTML Template</title>
+	<title></title>
 
 </head>
 <body class="body">
