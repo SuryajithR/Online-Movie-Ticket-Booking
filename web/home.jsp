@@ -194,12 +194,12 @@
 							<!-- end card -->
 						</div>
                                                                         
-        <%
-                }
-            } catch (Exception e) {
-                out.println(e);
-            }
-        %>
+                                        <%
+                                                }
+                                            } catch (Exception e) {
+                                                out.println(e);
+                                            }
+                                        %>
 					</div>
 				</div>
 			</div>
