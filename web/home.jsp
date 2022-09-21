@@ -167,7 +167,6 @@
                                                 ResultSet rs = st.executeQuery(sql);
                                                 while (rs.next()) {
                                                     String firstname = rs.getString("movie_name");
-//                                                  String lastname = rs.getString("movie_desc");
                                                     String genre = rs.getString("genre");
                                                     String filename = rs.getString("file_name");
                                                     String id = rs.getString("movie_id");
