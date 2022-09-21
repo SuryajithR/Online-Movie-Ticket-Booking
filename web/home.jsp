@@ -304,6 +304,7 @@
 	<script src="js/jquery.morelines.min.js"></script>
 	<script src="js/photoswipe.min.js"></script>
 	<script src="js/photoswipe-ui-default.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 
 </html>
